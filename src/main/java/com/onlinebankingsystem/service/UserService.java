@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.onlinebankingsystem.dao.UserJpaRepository;
 import com.onlinebankingsystem.exception.IncorrectLoginPasswordException;
 import com.onlinebankingsystem.exception.IncorrectLoginUsernameException;
+import com.onlinebankingsystem.exception.LockedUserException;
 import com.onlinebankingsystem.login.Login;
 import com.onlinebankingsystem.users.User;
 
@@ -43,15 +44,19 @@ public class UserService implements IService {
 		//We need to compare the username because some databases such as MySQL are not case sensitive
 		if (optUser.isPresent() && login.getUsername().equals(optUser.get().getLoginUsername())) {
 			User user = optUser.get();
-			if (login.getPassword().equals(user.getLoginPassword())) {
-				
-				if (user.getNumFailedLogins() > 0) {
-					user.setNumFailedLogins(0);
-					dao.save(user);
-				}
-				return user;
+			if (user.isLocked()) {
+				throw new LockedUserException(user);
 			} else {
-				throw new IncorrectLoginPasswordException(user);
+				if (login.getPassword().equals(user.getLoginPassword())) {
+					
+					if (user.getNumFailedLogins() > 0) {
+						user.setNumFailedLogins(0);
+						dao.save(user);
+					}
+					return user;
+				} else {
+					throw new IncorrectLoginPasswordException(user);
+				}
 			}
 		} else {
 			throw new IncorrectLoginUsernameException();
