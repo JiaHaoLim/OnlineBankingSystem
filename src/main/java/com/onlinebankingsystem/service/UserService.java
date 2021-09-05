@@ -48,7 +48,6 @@ public class UserService implements IService {
 					user.setNumFailedLogins(0);
 					dao.save(user);
 				}
-				System.out.println(login.getUsername());
 				return user;
 			} else {
 				user.addNumFailedLogins();
