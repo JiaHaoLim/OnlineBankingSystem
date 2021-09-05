@@ -15,6 +15,9 @@ import com.onlinebankingsystem.users.User;
 
 @Service
 public class UserService implements IService {
+	
+	public static final int MAX_FAILED_ATTEMPTS = 3;
+	
 	@Autowired
 	@Qualifier(value = "UserJpaRepository")
 	private UserJpaRepository dao;
@@ -34,15 +37,28 @@ public class UserService implements IService {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public User getUserByLogin(Login login) {
-		int id = -1;
-		try {
-			id = Integer.parseInt(login.getId());
-		} catch (NumberFormatException nfe) {
-			return null;
-		}
-		Optional<User> user = dao.findById(id);
-		if (user.isPresent() && login.getPassword().equals(user.get().getPassword())) {
-			return user.get();
+		Optional<User> optUser = dao.findByLoginUsername(login.getUsername());
+		if (optUser.isPresent()) {
+			User user = optUser.get();
+			//We need to compare the username because some databases such as MySQL are not case sensitive
+			if (login.getUsername().equals(user.getLoginUsername()) && 
+				login.getPassword().equals(user.getLoginPassword())) {
+				
+				if (user.getNumFailedLogins() > 0) {
+					user.setNumFailedLogins(0);
+					dao.save(user);
+				}
+				System.out.println(login.getUsername());
+				return user;
+			} else {
+				user.addNumFailedLogins();
+				if (user.getNumFailedLogins() >= MAX_FAILED_ATTEMPTS) {
+					user.setLocked(true);
+				}
+				
+				dao.save(user);
+				return null;
+			}
 		} else {
 			return null;
 		}

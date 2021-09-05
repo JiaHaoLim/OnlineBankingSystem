@@ -12,9 +12,9 @@
 	<h2>Sign In</h2>
 
 	<form:form method="post" modelAttribute="login" action="login">
-		<spring:message code="login.id"></spring:message>
-		<form:input path="id" />
-		<form:errors path="id"></form:errors>
+		<spring:message code="login.username"></spring:message>
+		<form:input path="username" />
+		<form:errors path="username"></form:errors>
 		<br>
 		<spring:message code="login.password"></spring:message>
 		<form:password path="password" />

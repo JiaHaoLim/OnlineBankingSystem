@@ -1,26 +1,26 @@
 package com.onlinebankingsystem.login;
 
 public class Login {
-	private String id;
+	private String username;
 	private String password;
 	
-	public Login(String id, String password) {
-		this.id = id;
+	public Login(String username, String password) {
+		this.username = username;
 		this.password = password;
 	}
 
 	public Login() {}
 
-	public String getId() {
-		return id;
+	public String getUsername() {
+		return username;
 	}
 
 	public String getPassword() {
 		return password;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public void setPassword(String password) {

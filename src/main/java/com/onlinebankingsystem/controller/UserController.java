@@ -41,7 +41,7 @@ public class UserController {
 		} else {
 			User user = service.getUserByLogin(login);
 			if (user == null) {
-				result.rejectValue("id", "login.id.error.incorrect_id_or_password");
+				result.rejectValue("username", "login.username.error.incorrect_username_or_password");
 				return "login";
 			}
 			model.addAttribute("user", user);

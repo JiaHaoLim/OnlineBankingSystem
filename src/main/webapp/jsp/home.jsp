@@ -14,9 +14,11 @@
 	In a complete breach of security and privacy, here are all your details: <br>
 	ID: ${user.id} <br>
 	Name: ${user.name} <br>
-	Password: ${user.password} <br> 
+	Login Username: ${user.loginUsername} <br>
+	Login Password: ${user.loginPassword} <br> 
 	Secret Question: ${user.secretQuestion} <br>
-	Transaction Password: ${user.transactionPassword} <br>
-	Lock Status: ${user.lockStatus} <br>
+	Secret Answer: ${user.secretAnswer} <br>
+	Number of failed logins: ${user.numFailedLogins} <br>
+	Lock Status: ${user.isLocked} <br>
 </body>
 </html>

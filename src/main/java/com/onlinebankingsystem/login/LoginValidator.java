@@ -18,12 +18,7 @@ public class LoginValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		Login login = (Login) target;
-		ValidationUtils.rejectIfEmpty(errors, "id", "login.id.error.null");
-		try {
-			int id = Integer.parseInt(login.getId());
-		} catch (NumberFormatException nfe) {
-			errors.reject("id", "login.id.error.incorrect_id_or_password");
-		}
+		ValidationUtils.rejectIfEmpty(errors, "username", "login.username.error.null");
 		ValidationUtils.rejectIfEmpty(errors, "password", "login.password.error.null");
 	}
 
