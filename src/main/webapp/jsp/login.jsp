@@ -1,3 +1,4 @@
+<%@page import="com.onlinebankingsystem.controller.UserController"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -11,10 +12,10 @@
 <body>
 	<h2>Sign In</h2>
 
-	<form:form method="post" modelAttribute="login" action="login">
-		<spring:message code="login.id"></spring:message>
-		<form:input path="id" />
-		<form:errors path="id"></form:errors>
+	<form:form method="post" modelAttribute="<%=UserController.MODEL_ATTRIBUTE_LOGIN%>" action="login">
+		<spring:message code="login.username"></spring:message>
+		<form:input path="username" />
+		<form:errors path="username"></form:errors>
 		<br>
 		<spring:message code="login.password"></spring:message>
 		<form:password path="password" />

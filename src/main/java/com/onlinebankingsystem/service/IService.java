@@ -16,6 +16,8 @@ public interface IService {
 	User deleteUser(int id);
 
 	User getUserByLogin(Login login);
+
+	void addNumFailedLogins(User user);
 	
 //	List<User> findByIdOrName(int id, String name);
 }

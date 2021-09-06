@@ -10,11 +10,17 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.onlinebankingsystem.dao.UserJpaRepository;
+import com.onlinebankingsystem.exception.IncorrectLoginPasswordException;
+import com.onlinebankingsystem.exception.IncorrectLoginUsernameException;
+import com.onlinebankingsystem.exception.LockedUserException;
 import com.onlinebankingsystem.login.Login;
 import com.onlinebankingsystem.users.User;
 
 @Service
 public class UserService implements IService {
+	
+	public static final int MAX_FAILED_ATTEMPTS = 3;
+	
 	@Autowired
 	@Qualifier(value = "UserJpaRepository")
 	private UserJpaRepository dao;
@@ -34,18 +40,37 @@ public class UserService implements IService {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public User getUserByLogin(Login login) {
-		int id = -1;
-		try {
-			id = Integer.parseInt(login.getId());
-		} catch (NumberFormatException nfe) {
-			return null;
-		}
-		Optional<User> user = dao.findById(id);
-		if (user.isPresent() && login.getPassword().equals(user.get().getPassword())) {
-			return user.get();
+		Optional<User> optUser = dao.findByLoginUsername(login.getUsername());
+		//We need to compare the username because some databases such as MySQL are not case sensitive
+		if (optUser.isPresent() && login.getUsername().equals(optUser.get().getLoginUsername())) {
+			User user = optUser.get();
+			if (user.isLocked()) {
+				throw new LockedUserException(user);
+			} else {
+				if (login.getPassword().equals(user.getLoginPassword())) {
+					
+					if (user.getNumFailedLogins() > 0) {
+						user.setNumFailedLogins(0);
+						dao.save(user);
+					}
+					return user;
+				} else {
+					throw new IncorrectLoginPasswordException(user);
+				}
+			}
 		} else {
-			return null;
+			throw new IncorrectLoginUsernameException();
 		}
+	}
+	
+	@Override
+	public void addNumFailedLogins(User user) {
+		user.addNumFailedLogins();
+		if (user.getNumFailedLogins() >= MAX_FAILED_ATTEMPTS) {
+			user.setLocked(true);
+		}
+		
+		dao.save(user);
 	}
 
 	@Override

@@ -18,29 +18,41 @@ public class User {
 	@Column(name = NAME_COLUMN)
 	private String name;
 	
+	public static final String LOGIN_USERNAME_COLUMN = "login_username";
+	@Column(name = LOGIN_USERNAME_COLUMN)
+	private String loginUsername;
+	
 	public static final String LOGIN_PASSWORD_COLUMN = "login_password";
 	@Column(name = LOGIN_PASSWORD_COLUMN)
-	private String password;
+	private String loginPassword;
 	
 	public static final String SECRET_QUESTION_COLUMN = "secret_question";
 	@Column(name = SECRET_QUESTION_COLUMN)
 	private String secretQuestion;
 	
-	public static final String TRANSACTION_PASSWORD_COLUMN = "transaction_password";
-	@Column(name = TRANSACTION_PASSWORD_COLUMN)
-	private String transactionPassword;
+	public static final String SECRET_ANSWER_COLUMN = "secret_answer";
+	@Column(name = SECRET_ANSWER_COLUMN)
+	private String secretAnswer;
+	
+	public static final String NUM_FAILED_LOGINS_COLUMN = "num_failed_logins";
+	@Column(name = NUM_FAILED_LOGINS_COLUMN)
+	private int numFailedLogins;
 	
 	public static final String LOCK_STATUS_COLUMN = "lock_status";
 	@Column(name = LOCK_STATUS_COLUMN)
-	private boolean lockStatus;
+	private boolean isLocked;
 	
 	public User() {}
 
-	public User(String name, String password, String secret_question, String transactionPassword) {
+	public User(String name, String loginUsername, String loginPassword, String secretQuestion, String secretAnswer,
+			int numFailedLogins, boolean isLocked) {
 		this.name = name;
-		this.password = password;
-		this.secretQuestion = secret_question;
-		this.transactionPassword = transactionPassword;
+		this.loginUsername = loginUsername;
+		this.loginPassword = loginPassword;
+		this.secretQuestion = secretQuestion;
+		this.secretAnswer = secretAnswer;
+		this.numFailedLogins = numFailedLogins;
+		this.isLocked = isLocked;
 	}
 
 	public int getId() {
@@ -59,12 +71,20 @@ public class User {
 		this.name = name;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getLoginUsername() {
+		return loginUsername;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setLoginUsername(String loginUsername) {
+		this.loginUsername = loginUsername;
+	}
+
+	public String getLoginPassword() {
+		return loginPassword;
+	}
+
+	public void setLoginPassword(String loginPassword) {
+		this.loginPassword = loginPassword;
 	}
 
 	public String getSecretQuestion() {
@@ -75,25 +95,41 @@ public class User {
 		this.secretQuestion = secretQuestion;
 	}
 
-	public String getTransactionPassword() {
-		return transactionPassword;
+	public String getSecretAnswer() {
+		return secretAnswer;
 	}
 
-	public void setTransactionPassword(String transactionPassword) {
-		this.transactionPassword = transactionPassword;
+	public void setSecretAnswer(String secretAnswer) {
+		this.secretAnswer = secretAnswer;
 	}
 
-	public boolean getLockStatus() {
-		return lockStatus;
+	public int getNumFailedLogins() {
+		return numFailedLogins;
 	}
 
-	public void setLockStatus(boolean lockStatus) {
-		this.lockStatus = lockStatus;
+	public void setNumFailedLogins(int numFailedLogins) {
+		this.numFailedLogins = numFailedLogins;
+	}
+	
+	public void addNumFailedLogins() {
+		++numFailedLogins;
+	}
+	
+	// Used by Java
+	public boolean isLocked() {
+		return isLocked;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", password=" + password + ", secretQuestion=" + secretQuestion
-				+ ", transactionPassword=" + transactionPassword + ", lockStatus=" + lockStatus + "]";
+	public void setLocked(boolean isLocked) {
+		this.isLocked = isLocked;
+	}
+	
+	// Used by Spring
+	public boolean getIsLocked() {
+		return isLocked();
+	}
+	
+	public void setIsLocked(boolean isLocked) {
+		setLocked(isLocked);
 	}
 }
