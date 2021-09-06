@@ -1,0 +1,1 @@
+In STS, right click OnlineBankingSystem > Maven > Update Project the first time that you download this project.
