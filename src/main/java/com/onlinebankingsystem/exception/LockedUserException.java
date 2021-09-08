@@ -1,15 +1,13 @@
 package com.onlinebankingsystem.exception;
 
-import com.onlinebankingsystem.users.User;
-
 public class LockedUserException extends RuntimeException {
-	private User user;
+	private String secretQuestion;
 	
-	public LockedUserException(User user) {
-		this.user = user;
+	public LockedUserException(String secretQuestion) {
+		this.secretQuestion = secretQuestion;
 	}
 	
-	public User getUser() {
-		return user;
+	public String getSecretQuestion() {
+		return secretQuestion;
 	}
 }
