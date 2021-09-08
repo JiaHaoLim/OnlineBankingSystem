@@ -1,4 +1,4 @@
-package com.onlinebankingsystem.login;
+package com.onlinebankingsystem.users;
 
 public class Login {
 	private String username;
