@@ -7,17 +7,17 @@ import com.onlinebankingsystem.users.User;
 
 public interface IService {
 	
-	public List<User> getAllUsers();
+	List<User> getAllUsers();
 
-	public User getUser(int id);
+	User getUser(int id);
 
-	public User saveUser(User user);
+	User saveUser(User user);
 
-	public User deleteUser(int id);
+	User deleteUser(int id);
 
-	public User getUserByLogin(Login login);
+	User getUserByLogin(Login login);
 
-	public void addNumFailedLogins(User user);
+	void addNumFailedLogins(User user);
 	
-//	public List<User> findByIdOrName(int id, String name);
+//	List<User> findByIdOrName(int id, String name);
 }
