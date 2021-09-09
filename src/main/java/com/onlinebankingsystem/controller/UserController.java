@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,12 +20,14 @@ import com.onlinebankingsystem.exception.IncorrectLoginUsernameException;
 import com.onlinebankingsystem.exception.IncorrectSecretAnswerException;
 import com.onlinebankingsystem.exception.LockedUserException;
 import com.onlinebankingsystem.service.IService;
+import com.onlinebankingsystem.users.AccountHolder;
+import com.onlinebankingsystem.users.BankAdmin;
 import com.onlinebankingsystem.users.Login;
 import com.onlinebankingsystem.users.LoginValidator;
 import com.onlinebankingsystem.users.User;
 
 @Controller
-@SessionAttributes({"login", "secret", "user"})
+@SessionAttributes({"login", "secret", "user"}) //Possibly unsafe? Need more research during integration
 public class UserController {
 	public static final String MODEL_ATTRIBUTE_LOGIN = "login";
 	public static final String MODEL_ATTRIBUTE_SECRET = "secret";
@@ -54,7 +57,7 @@ public class UserController {
 			try {
 				User user = service.getUserByLogin(login);
 				model.addAttribute(MODEL_ATTRIBUTE_USER, user);
-				return JSP_WELCOME;
+				return getWelcomeByUserType(user);
 			} catch (IncorrectLoginUsernameException ilue) {
 				result.rejectValue("username", ilue.getMessage());
 				return JSP_LOGIN;
@@ -88,12 +91,21 @@ public class UserController {
 			try {
 				User user = service.unlockUser(login, secret);
 				model.addAttribute(MODEL_ATTRIBUTE_USER, user);
-				return JSP_WELCOME;
+				return getWelcomeByUserType(user);
 			} catch (IncorrectSecretAnswerException isae) {
 				result.rejectValue("password", isae.getMessage());
 				return JSP_UNLOCK;
 			}
 		}
+	}
+	
+	private String getWelcomeByUserType(User user) {
+		if (user instanceof AccountHolder) {
+			return JSP_WELCOME;
+		} else if (user instanceof BankAdmin) {
+			return JSP_WELCOME;
+		}
+		return JSP_LOGIN;
 	}
 }
 
