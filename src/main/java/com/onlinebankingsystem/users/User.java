@@ -7,16 +7,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 @EnableAutoConfiguration
 @Entity(name = "user")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(nullable = false, unique = true)
 	private int id;
 	
 	public static final String NAME_COLUMN = "name";
@@ -24,7 +26,7 @@ public abstract class User {
 	private String name;
 	
 	public static final String LOGIN_USERNAME_COLUMN = "login_username";
-	@Column(name = LOGIN_USERNAME_COLUMN)
+	@Column(name = LOGIN_USERNAME_COLUMN, unique = true)
 	private String loginUsername;
 	
 	public static final String LOGIN_PASSWORD_COLUMN = "login_password";
