@@ -19,7 +19,7 @@ import com.onlinebankingsystem.exception.IncorrectLoginPasswordException;
 import com.onlinebankingsystem.exception.IncorrectLoginUsernameException;
 import com.onlinebankingsystem.exception.IncorrectSecretAnswerException;
 import com.onlinebankingsystem.exception.LockedUserException;
-import com.onlinebankingsystem.service.IService;
+import com.onlinebankingsystem.service.InterfaceUserService;
 import com.onlinebankingsystem.users.AccountHolder;
 import com.onlinebankingsystem.users.BankAdmin;
 import com.onlinebankingsystem.users.Login;
@@ -38,7 +38,7 @@ public class UserController {
 	public static final String JSP_UNLOCK = "unlockaccount";
 	
 	@Autowired
-	IService service;
+	InterfaceUserService service;
 	
 	@GetMapping("/")
 	public String frontPage(Model model) {

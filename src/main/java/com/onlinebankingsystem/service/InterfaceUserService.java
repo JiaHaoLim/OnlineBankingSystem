@@ -5,7 +5,7 @@ import java.util.List;
 import com.onlinebankingsystem.users.Login;
 import com.onlinebankingsystem.users.User;
 
-public interface IService {
+public interface InterfaceUserService {
 	
 	List<User> getAllUsers();
 

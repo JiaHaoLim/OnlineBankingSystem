@@ -18,7 +18,7 @@ import com.onlinebankingsystem.users.Login;
 import com.onlinebankingsystem.users.User;
 
 @Service
-public class UserService implements IService {
+public class UserService implements InterfaceUserService {
 
 	public static final int MAX_FAILED_ATTEMPTS = 3;
 
