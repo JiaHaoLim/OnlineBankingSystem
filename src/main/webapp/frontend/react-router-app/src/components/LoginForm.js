@@ -7,21 +7,28 @@ export class LoginForm extends Component {
 
         this.state={
             redirect: null,
-            // name: '',
             username: '',
             password:'',
-            // secret_question: 'What is your name?',
-            // secret_answer: ''
         }
     }
 
     handleSubmit = (event) => {
         //Todo: Add error handling & lock account msg 
-        alert(`${this.state.name} ${this.state.username} ${this.state.password} ${this.state.secret_question} ${this.state.secret_answer}`)
+        alert(`${this.state.name} ${this.state.username} ${this.state.password} ${this.state.secret_question} ${this.state.secret_answer} `)
         //Assume it is sucessful verification
         //Check the user type as well
         this.setState({redirect:"/home"});
         //event.preventDefault() will prevent page from refreshing after clicking ok on alert
+        event.preventDefault()
+    }
+
+    handleUnlock = (event) => {
+        this.setState({redirect:"/unlockaccount"});
+        event.preventDefault()
+    }
+
+    handleReset = (event) => {
+        this.setState({redirect:"/unlockaccount"});
         event.preventDefault()
     }
 
@@ -64,11 +71,6 @@ export class LoginForm extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <div>
-                        <label>Name : </label>
-                        <input type="text" value={this.state.name}
-                        onChange={this.handleNameChange} />
-                    </div>
-                    <div>
                         <label>Username : </label>
                         <input type="text" value={this.state.username}
                         onChange={this.handleUsernameChange} />
@@ -78,20 +80,8 @@ export class LoginForm extends Component {
                         <input type="text" value={this.state.password}
                         onChange={this.handlePasswordChange} />
                     </div>
-                    <div>
-                        <label>Secret Question : </label>
-                        <select value={this.state.secret_question} onChange={this.handleSecretQuestionChange}>
-                            <option value="q1">What is your name?</option>
-                            <option value="q2">What is your favorite food?</option>
-                            <option value="q3">What is the name of your pet?</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Secret Answer : </label>
-                        <input type="text" value={this.state.secret_answer}
-                        onChange={this.handleSecretAnswerChange} />
-                    </div>
-                    <button type="submit">Login</button>
+                    <button onClick={this.handleSubmit}>Login</button>
+                    <button onClick={this.handleUnlock}>Unlock Account</button>
                 </form>
             </div>
         )
