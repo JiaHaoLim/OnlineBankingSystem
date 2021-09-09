@@ -17,9 +17,9 @@ https://spring.io/guides/tutorials/react-and-spring-data-rest/
 
 
 # installation
-npx create-react-app online_banking_system
+npx create-react-app react-router-app
 npm install react-router-dom
-npm install react-router-dom axios
+npm install axios
 
 # git command
 git init
