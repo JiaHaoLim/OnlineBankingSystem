@@ -5,11 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "users")
-public class User {
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
+@EnableAutoConfiguration
+@Entity(name = "user")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -43,6 +48,14 @@ public class User {
 	private boolean isLocked;
 	
 	public User() {}
+	
+	public User(String name, String loginUsername, String loginPassword, String secretQuestion, String secretAnswer) {
+		this.name = name;
+		this.loginUsername = loginUsername;
+		this.loginPassword = loginPassword;
+		this.secretQuestion = secretQuestion;
+		this.secretAnswer = secretAnswer;
+	}
 
 	public User(String name, String loginUsername, String loginPassword, String secretQuestion, String secretAnswer,
 			int numFailedLogins, boolean isLocked) {
