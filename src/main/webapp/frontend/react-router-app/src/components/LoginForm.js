@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 export class LoginForm extends Component {
     constructor(props) {
         super(props)
 
         this.state={
-            name: '',
+            redirect: null,
+            // name: '',
             username: '',
             password:'',
-            secret_question: 'What is your name?',
-            secret_answer: ''
+            // secret_question: 'What is your name?',
+            // secret_answer: ''
         }
     }
 
     handleSubmit = (event) => {
         //Todo: Add error handling & lock account msg 
         alert(`${this.state.name} ${this.state.username} ${this.state.password} ${this.state.secret_question} ${this.state.secret_answer}`)
+        //Assume it is sucessful verification
+        //Check the user type as well
+        this.setState({redirect:"/home"});
         //event.preventDefault() will prevent page from refreshing after clicking ok on alert
         event.preventDefault()
     }
@@ -51,6 +56,10 @@ export class LoginForm extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect}/>
+        }
+        
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>

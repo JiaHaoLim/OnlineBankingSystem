@@ -8,7 +8,8 @@ import FundTransfer from '../components/FundTransfer';
 import ChangePassword from '../components/ChangePassword';
 
 function HomePage({usertype}) {
-    console.log("login user type is: "+usertype == 1? "Account Holder" : "Admin")
+    console.log(usertype === 1? "Account Holder" : "Admin")
+    
 
     return (
         <HashRouter>
