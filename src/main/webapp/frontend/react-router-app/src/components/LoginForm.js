@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-<<<<<<< Updated upstream
 import { Redirect } from 'react-router-dom';
-=======
-import {BrowserRouter,Link,Switch,Route,Router} from 'react-router-dom';
-import HomePage from '../pages/HomePage';
->>>>>>> Stashed changes
 
 export class LoginForm extends Component {
     constructor(props) {
@@ -48,6 +43,18 @@ export class LoginForm extends Component {
         })
     } 
 
+    handleSecretQuestionChange = (event) => {
+        this.setState({
+            secret_question: event.target.value
+        })
+    }
+
+    handleSecretAnswerChange = (event) => {
+        this.setState({
+            secret_answer: event.target.value
+        })
+    }
+
     render() {
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect}/>
@@ -56,6 +63,11 @@ export class LoginForm extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
+                    <div>
+                        <label>Name : </label>
+                        <input type="text" value={this.state.name}
+                        onChange={this.handleNameChange} />
+                    </div>
                     <div>
                         <label>Username : </label>
                         <input type="text" value={this.state.username}
@@ -66,11 +78,20 @@ export class LoginForm extends Component {
                         <input type="text" value={this.state.password}
                         onChange={this.handlePasswordChange} />
                     </div>
-                    <Link to="/homepage">
-                        <button type="submit">Login</button>
-                    </Link>
-                    <Route path="/homepage" component={HomePage}/>
-                    {/* <button type="submit" onClick={HomePage}>Login</button> */}
+                    <div>
+                        <label>Secret Question : </label>
+                        <select value={this.state.secret_question} onChange={this.handleSecretQuestionChange}>
+                            <option value="q1">What is your name?</option>
+                            <option value="q2">What is your favorite food?</option>
+                            <option value="q3">What is the name of your pet?</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Secret Answer : </label>
+                        <input type="text" value={this.state.secret_answer}
+                        onChange={this.handleSecretAnswerChange} />
+                    </div>
+                    <button type="submit">Login</button>
                 </form>
             </div>
         )
