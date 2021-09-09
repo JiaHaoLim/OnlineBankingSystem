@@ -1,5 +1,11 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
+import ViewStatements from '../components/ViewStatements';
+import TrackServiceRequest from '../components/TrackServiceRequest';
+import FundTransfer from '../components/FundTransfer';
+import ChangePassword from '../components/ChangePassword';
+import RequestforChequeBook from '../components/RequestforChequeBook';
+
 
 function HomePage({usertype}) {
     console.log("login user type is: "+usertype == 1? "Account Holder" : "Admin")

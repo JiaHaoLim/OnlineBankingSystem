@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 
-function Post() {
+function ViewStatements() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -34,4 +34,4 @@ function Post() {
     )
 }
 
-export default Post
+export default ViewStatements

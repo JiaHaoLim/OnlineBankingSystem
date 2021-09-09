@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
-function Album() {
+function RequestforChequeBook() {
     const [albums, setAlbums] = useState([])
 
     useEffect( ()=> {
@@ -34,4 +34,4 @@ function Album() {
     )
 }
 
-export default Album
+export default RequestforChequeBook
