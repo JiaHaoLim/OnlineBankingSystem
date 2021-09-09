@@ -5,13 +5,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "users")
-public class User {
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
+@EnableAutoConfiguration
+@Entity(name = "user")
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(nullable = false, unique = true)
 	private int id;
 	
 	public static final String NAME_COLUMN = "name";
@@ -19,7 +26,7 @@ public class User {
 	private String name;
 	
 	public static final String LOGIN_USERNAME_COLUMN = "login_username";
-	@Column(name = LOGIN_USERNAME_COLUMN)
+	@Column(name = LOGIN_USERNAME_COLUMN, unique = true)
 	private String loginUsername;
 	
 	public static final String LOGIN_PASSWORD_COLUMN = "login_password";
@@ -43,6 +50,14 @@ public class User {
 	private boolean isLocked;
 	
 	public User() {}
+	
+	public User(String name, String loginUsername, String loginPassword, String secretQuestion, String secretAnswer) {
+		this.name = name;
+		this.loginUsername = loginUsername;
+		this.loginPassword = loginPassword;
+		this.secretQuestion = secretQuestion;
+		this.secretAnswer = secretAnswer;
+	}
 
 	public User(String name, String loginUsername, String loginPassword, String secretQuestion, String secretAnswer,
 			int numFailedLogins, boolean isLocked) {
