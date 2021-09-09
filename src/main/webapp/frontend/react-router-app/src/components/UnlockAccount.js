@@ -42,12 +42,12 @@ export class UnlockAccount extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <div>
-                        <label>Secret Question : </label>
-                        <select value={this.state.secret_question} onChange={this.handleSecretQuestionChange}>
+                        <label>Secret Question : {this.state.secret_question}</label>
+                        {/* <select value={this.state.secret_question} onChange={this.handleSecretQuestionChange}>
                             <option value="q1">What is your name?</option>
                             <option value="q2">What is your favorite food?</option>
                             <option value="q3">What is the name of your pet?</option>
-                        </select>
+                        </select> */}
                     </div>
                     <div>
                         <label>Secret Answer : </label>
