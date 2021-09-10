@@ -1,12 +1,13 @@
 package com.onlinebankingsystem.account;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BankStatement {
 	private String name;
 	private String address;
 	
-	private List<Transaction> transactions;
+	private List<Transaction> transactions = new ArrayList<>();
 	
 	public BankStatement() {}
 
