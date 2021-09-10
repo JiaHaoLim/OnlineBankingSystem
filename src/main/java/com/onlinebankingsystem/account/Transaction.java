@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity(name = "transaction")
 public class Transaction {
@@ -25,6 +27,7 @@ public class Transaction {
 	
 	public static final String DATE_COLUMN = "date";
 	@Column(name = DATE_COLUMN, nullable = false)
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date date;
 
 	public static final String AMOUNT_COLUMN = "amount";
@@ -32,7 +35,7 @@ public class Transaction {
 	private double amount;
 
 	public static final String ACCOUNT_ID_COLUMN = "accountID";
-	@Column(name = ACCOUNT_ID_COLUMN)
+	@Column(name = ACCOUNT_ID_COLUMN, nullable = false)
 	private int accountID;
 	
 	public Transaction() {}
