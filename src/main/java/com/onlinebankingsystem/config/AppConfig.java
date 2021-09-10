@@ -6,6 +6,8 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 
 @Configuration
 public class AppConfig {
+	
+	public static final int MAX_FAILED_ATTEMPTS = 3; 
 
     @Bean
     public ResourceBundleMessageSource messageSource() {

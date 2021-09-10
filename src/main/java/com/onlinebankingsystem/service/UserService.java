@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.onlinebankingsystem.config.AppConfig;
 import com.onlinebankingsystem.dao.UserJpaRepository;
 import com.onlinebankingsystem.exception.IncorrectLoginPasswordException;
 import com.onlinebankingsystem.exception.IncorrectLoginUsernameException;
@@ -20,7 +21,7 @@ import com.onlinebankingsystem.users.User;
 @Service
 public class UserService implements InterfaceUserService {
 
-	public static final int MAX_FAILED_ATTEMPTS = 3; 
+	public static final int MAX_FAILED_ATTEMPTS = AppConfig.MAX_FAILED_ATTEMPTS; 
 
 	@Autowired
 	@Qualifier(value = "UserJpaRepository")
