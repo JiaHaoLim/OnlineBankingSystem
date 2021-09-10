@@ -29,7 +29,6 @@ export class LoginForm extends Component {
     }
 
     handleNewUser = (event) => {
-        alert(`in handleRegister`);
         this.setState({redirect:"/registerpage"});
         event.preventDefault();
     }
