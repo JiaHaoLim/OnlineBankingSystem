@@ -53,13 +53,13 @@ public abstract class User {
 	@Column(name = LOCK_STATUS_COLUMN)
 	private boolean isLocked = false;
 	
-	public static final String DATE_COLUMN = "date";
+	public static final String DATE_COLUMN = "date_created";
 	@Column(name = DATE_COLUMN, nullable = false)
 	@Temporal(value = TemporalType.TIMESTAMP)
-	private Date date;
+	private Date dateCreated;
 	
 	public User() {
-		date = new Date();
+		dateCreated = new Date();
 	}
 	
 	public User(String name, String loginUsername, String loginPassword, String secretQuestion, String secretAnswer) {
@@ -72,7 +72,7 @@ public abstract class User {
 	}
 
 	public User(String name, String loginUsername, String loginPassword, String secretQuestion, String secretAnswer,
-			int numFailedLogins, boolean isLocked, Date date) {
+			int numFailedLogins, boolean isLocked, Date dateCreated) {
 		this.name = name;
 		this.loginUsername = loginUsername;
 		this.loginPassword = loginPassword;
@@ -80,7 +80,7 @@ public abstract class User {
 		this.secretAnswer = secretAnswer;
 		this.numFailedLogins = numFailedLogins;
 		this.isLocked = isLocked;
-		this.date = date;
+		this.dateCreated = dateCreated;
 	}
 
 	public int getId() {
@@ -161,11 +161,11 @@ public abstract class User {
 		setLocked(isLocked);
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getDateCreated() {
+		return dateCreated;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 }

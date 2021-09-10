@@ -25,10 +25,10 @@ public class Transaction {
 	@Column(name = TYPE_COLUMN, nullable = false)
 	private String type;
 	
-	public static final String DATE_COLUMN = "date";
+	public static final String DATE_COLUMN = "date_created";
 	@Column(name = DATE_COLUMN, nullable = false)
 	@Temporal(value = TemporalType.TIMESTAMP)
-	private Date date;
+	private Date dateCreated;
 
 	public static final String AMOUNT_COLUMN = "amount";
 	@Column(name = AMOUNT_COLUMN, nullable = false)
@@ -40,10 +40,10 @@ public class Transaction {
 	
 	public Transaction() {}
 	
-	public Transaction(String description, String type, Date date, double amount, int accountID) {
+	public Transaction(String description, String type, Date dateCreated, double amount, int accountID) {
 		this.description = description;
 		this.type = type;
-		this.date = date;
+		this.dateCreated = dateCreated;
 		this.amount = amount;
 		this.accountID = accountID;
 	}
@@ -72,12 +72,12 @@ public class Transaction {
 		this.type = type;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getDateCreated() {
+		return dateCreated;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 
 	public double getAmount() {

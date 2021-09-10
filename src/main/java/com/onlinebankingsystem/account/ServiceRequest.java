@@ -34,16 +34,16 @@ public class ServiceRequest {
 	@Column(name = STATUS_COLUMN, nullable = false)
 	private Status status = Status.OPEN;
 	
-	public static final String DATE_COLUMN = "date";
+	public static final String DATE_COLUMN = "date_created";
 	@Column(name = DATE_COLUMN, nullable = false)
 	@Temporal(value = TemporalType.TIMESTAMP)
-	private Date date;
+	private Date dateCreated;
 
-	public ServiceRequest(int acccountID, String type, Status status, Date date) {
+	public ServiceRequest(int acccountID, String type, Status status, Date dateCreated) {
 		this.acccountID = acccountID;
 		this.type = type;
 		this.status = status;
-		this.date = date;
+		this.dateCreated = dateCreated;
 	}
 
 	public int getId() {
@@ -85,11 +85,11 @@ public class ServiceRequest {
 		return str;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getDateCreated() {
+		return dateCreated;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 }

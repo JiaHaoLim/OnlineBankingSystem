@@ -39,9 +39,9 @@ public class AccountHolder extends User {
 	}
 	
 	public AccountHolder(String name, String loginUsername, String loginPassword, String secretQuestion,
-			String secretAnswer, int numFailedLogins, boolean isLocked, Date date, 
+			String secretAnswer, int numFailedLogins, boolean isLocked, Date dateCreated, 
 			String address, String mobileNumber, String email) {
-		super(name, loginUsername, loginPassword, secretQuestion, secretAnswer, numFailedLogins, isLocked, date);
+		super(name, loginUsername, loginPassword, secretQuestion, secretAnswer, numFailedLogins, isLocked, dateCreated);
 		setDetails(address, mobileNumber, email);
 	}
 	

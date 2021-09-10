@@ -17,7 +17,7 @@ public class BankAdmin extends User {
 	}
 	
 	public BankAdmin(String name, String loginUsername, String loginPassword, String secretQuestion,
-			String secretAnswer, int numFailedLogins, boolean isLocked, Date date) {
-		super(name, loginUsername, loginPassword, secretQuestion, secretAnswer, numFailedLogins, isLocked, date);
+			String secretAnswer, int numFailedLogins, boolean isLocked, Date dateCreated) {
+		super(name, loginUsername, loginPassword, secretQuestion, secretAnswer, numFailedLogins, isLocked, dateCreated);
 	}
 }
