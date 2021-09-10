@@ -20,7 +20,7 @@ import com.onlinebankingsystem.users.User;
 @Service
 public class UserService implements InterfaceUserService {
 
-	public static final int MAX_FAILED_ATTEMPTS = 3;
+	public static final int MAX_FAILED_ATTEMPTS = 3; 
 
 	@Autowired
 	@Qualifier(value = "UserJpaRepository")
