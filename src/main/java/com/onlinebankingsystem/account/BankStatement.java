@@ -2,15 +2,15 @@ package com.onlinebankingsystem.account;
 
 import java.util.List;
 
-public class Statement {
+public class BankStatement {
 	private String name;
 	private String address;
 	
 	private List<Transaction> transactions;
 	
-	public Statement() {}
+	public BankStatement() {}
 
-	public Statement(String name, String address, List<Transaction> transactions) {
+	public BankStatement(String name, String address, List<Transaction> transactions) {
 		this.name = name;
 		this.address = address;
 		this.transactions = transactions;
