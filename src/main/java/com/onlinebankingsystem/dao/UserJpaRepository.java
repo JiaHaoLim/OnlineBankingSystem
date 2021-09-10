@@ -7,11 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.onlinebankingsystem.users.User;
 
-//@Repository(value = "JpaRepository")
-//public interface UserJpaRepository extends IDao, JpaRepository<User, Integer> {
-//
-//}
-
 @Repository(value = "UserJpaRepository")
 public interface UserJpaRepository extends InterfaceUserDao, JpaRepository<User, Integer> {
 
