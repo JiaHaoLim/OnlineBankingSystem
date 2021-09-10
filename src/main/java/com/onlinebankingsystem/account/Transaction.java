@@ -30,14 +30,19 @@ public class Transaction {
 	public static final String AMOUNT_COLUMN = "amount";
 	@Column(name = AMOUNT_COLUMN, nullable = false)
 	private double amount;
+
+	public static final String ACCOUNT_ID_COLUMN = "accountID";
+	@Column(name = ACCOUNT_ID_COLUMN)
+	private int accountID;
 	
 	public Transaction() {}
 	
-	public Transaction(String description, String type, Date date, double amount) {
+	public Transaction(String description, String type, Date date, double amount, int accountID) {
 		this.description = description;
 		this.type = type;
 		this.date = date;
 		this.amount = amount;
+		this.accountID = accountID;
 	}
 
 	public int getId() {
@@ -79,6 +84,12 @@ public class Transaction {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	
-	
+
+	public int getAccountID() {
+		return accountID;
+	}
+
+	public void setAccountID(int accountID) {
+		this.accountID = accountID;
+	}
 }
