@@ -14,15 +14,15 @@ import com.onlinebankingsystem.account.Account;
 public class AccountHolder extends User {
 	
 	public static final String ADDRESS_COLUMN = "address";
-	@Column(name = ADDRESS_COLUMN)
+	@Column(name = ADDRESS_COLUMN, nullable = false)
 	private String address;
 	
 	public static final String MOBILE_NUMBER_COLUMN = "mobile_number";
-	@Column(name = MOBILE_NUMBER_COLUMN)
+	@Column(name = MOBILE_NUMBER_COLUMN, nullable = false)
 	private String mobileNumber;
 	
 	public static final String EMAIL_COLUMN = "email";
-	@Column(name = EMAIL_COLUMN)
+	@Column(name = EMAIL_COLUMN, nullable = false)
 	private String email;
 	
 	@OneToMany(targetEntity = Account.class, cascade = CascadeType.ALL)

@@ -22,32 +22,32 @@ public abstract class User {
 	private int id;
 	
 	public static final String NAME_COLUMN = "name";
-	@Column(name = NAME_COLUMN)
+	@Column(name = NAME_COLUMN, nullable = false)
 	private String name;
 	
 	public static final String LOGIN_USERNAME_COLUMN = "login_username";
-	@Column(name = LOGIN_USERNAME_COLUMN, unique = true)
+	@Column(name = LOGIN_USERNAME_COLUMN, nullable = false, unique = true)
 	private String loginUsername;
 	
 	public static final String LOGIN_PASSWORD_COLUMN = "login_password";
-	@Column(name = LOGIN_PASSWORD_COLUMN)
+	@Column(name = LOGIN_PASSWORD_COLUMN, nullable = false)
 	private String loginPassword;
 	
 	public static final String SECRET_QUESTION_COLUMN = "secret_question";
-	@Column(name = SECRET_QUESTION_COLUMN)
+	@Column(name = SECRET_QUESTION_COLUMN, nullable = false)
 	private String secretQuestion;
 	
 	public static final String SECRET_ANSWER_COLUMN = "secret_answer";
-	@Column(name = SECRET_ANSWER_COLUMN)
+	@Column(name = SECRET_ANSWER_COLUMN, nullable = false)
 	private String secretAnswer;
 	
 	public static final String NUM_FAILED_LOGINS_COLUMN = "num_failed_logins";
 	@Column(name = NUM_FAILED_LOGINS_COLUMN)
-	private int numFailedLogins;
+	private int numFailedLogins = 0;
 	
 	public static final String LOCK_STATUS_COLUMN = "lock_status";
 	@Column(name = LOCK_STATUS_COLUMN)
-	private boolean isLocked;
+	private boolean isLocked = false;
 	
 	public User() {}
 	
