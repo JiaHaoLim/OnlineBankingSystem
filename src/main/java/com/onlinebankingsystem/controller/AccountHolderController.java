@@ -2,8 +2,10 @@ package com.onlinebankingsystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.onlinebankingsystem.account.Account;
 import com.onlinebankingsystem.account.BankStatement;
 import com.onlinebankingsystem.service.InterfaceAccountHolderService;
 import com.onlinebankingsystem.service.InterfaceUserService;
@@ -20,7 +22,7 @@ public class AccountHolderController {
 	InterfaceAccountHolderService service;
 	
 	@PostMapping(URL_MINI_STATEMENT)
-	public BankStatement getMiniStatement() {
-		return service.getMiniStatement();
+	public BankStatement getMiniStatement(@ModelAttribute("account") Account account) {
+		return service.getMiniStatement(account);
 	}
 }
