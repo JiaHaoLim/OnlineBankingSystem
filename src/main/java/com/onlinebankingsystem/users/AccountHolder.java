@@ -1,5 +1,6 @@
 package com.onlinebankingsystem.users;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -34,6 +35,17 @@ public class AccountHolder extends User {
 	public AccountHolder(String name, String loginUsername, String loginPassword, String secretQuestion,
 			String secretAnswer, String address, String mobileNumber, String email) {
 		super(name, loginUsername, loginPassword, secretQuestion, secretAnswer);
+		setDetails(address, mobileNumber, email);
+	}
+	
+	public AccountHolder(String name, String loginUsername, String loginPassword, String secretQuestion,
+			String secretAnswer, int numFailedLogins, boolean isLocked, Date date, 
+			String address, String mobileNumber, String email) {
+		super(name, loginUsername, loginPassword, secretQuestion, secretAnswer, numFailedLogins, isLocked, date);
+		setDetails(address, mobileNumber, email);
+	}
+	
+	private void setDetails(String address, String mobileNumber, String email) {
 		this.address = address;
 		this.mobileNumber = mobileNumber;
 		this.email = email;
