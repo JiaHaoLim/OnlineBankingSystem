@@ -21,9 +21,19 @@ public class AccountHolderService implements InterfaceAccountHolderService {
 
 	@Override
 	public BankStatement getMiniStatement(Account account) {
-		AccountHolder accountHolder = ahDao.getById(account.getAccountHolder().getId());
+		AccountHolder accountHolder = getAccountHolder(account);
 		return new BankStatement(accountHolder.getName(), accountHolder.getAddress(), 
 								tDao.findFirst10ByAccountIDOrderByDateCreated(account.getId()));
 	}
 
+	@Override
+	public BankStatement getDetailedStatement(Account account) {
+		AccountHolder accountHolder = getAccountHolder(account);
+		return new BankStatement(accountHolder.getName(), accountHolder.getAddress(), 
+								tDao.findByAccountIDOrderByDateCreated(account.getId()));
+	}
+
+	private AccountHolder getAccountHolder(Account account) {
+		return ahDao.getById(account.getAccountHolder().getId());
+	}
 }
