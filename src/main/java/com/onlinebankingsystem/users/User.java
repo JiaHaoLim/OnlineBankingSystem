@@ -42,7 +42,29 @@ public class User {
 	@Column(name = LOCK_STATUS_COLUMN)
 	private boolean isLocked;
 	
+	public static final String EMAIL_ADDRESS_COLUMN = "email_address";
+	@Column(name = EMAIL_ADDRESS_COLUMN)
+	private String emailAddress;
+	
+	public static final String MOBILE_NUM_COLUMN = "mobile_number";
+	@Column(name = MOBILE_NUM_COLUMN)
+	private String mobileNumber;
+	
 	public User() {}
+	
+	public User(String name, String loginUsername, String loginPassword, String secretQuestion, String secretAnswer,
+			int numFailedLogins, boolean isLocked, String emailAddress, String mobileNumber) {
+		super();
+		this.name = name;
+		this.loginUsername = loginUsername;
+		this.loginPassword = loginPassword;
+		this.secretQuestion = secretQuestion;
+		this.secretAnswer = secretAnswer;
+		this.numFailedLogins = numFailedLogins;
+		this.isLocked = isLocked;
+		this.emailAddress = emailAddress;
+		this.mobileNumber = mobileNumber;
+	}
 
 	public User(String name, String loginUsername, String loginPassword, String secretQuestion, String secretAnswer,
 			int numFailedLogins, boolean isLocked) {
@@ -132,4 +154,21 @@ public class User {
 	public void setIsLocked(boolean isLocked) {
 		setLocked(isLocked);
 	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+	
 }
