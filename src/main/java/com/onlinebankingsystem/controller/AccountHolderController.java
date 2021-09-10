@@ -13,6 +13,6 @@ public class AccountHolderController {
 	
 	@PostMapping(URL_MINI_STATEMENT)
 	public String viewMiniStatement() {
-		
+		return "/";
 	}
 }
