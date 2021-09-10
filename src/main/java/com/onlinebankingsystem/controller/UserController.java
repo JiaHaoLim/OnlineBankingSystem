@@ -34,8 +34,12 @@ public class UserController {
 	public static final String MODEL_ATTRIBUTE_USER = "user";
 	
 	public static final String JSP_LOGIN = "login";
-	public static final String JSP_WELCOME = "home";
 	public static final String JSP_UNLOCK = "unlockaccount";
+	public static final String JSP_HOME_ACCOUNT_HOLDER = "homeaccountholder";
+	public static final String JSP_HOME_BANK_ADMIN = "homebankadmin";
+	
+	public static final String URL_LOGIN = "/" + JSP_LOGIN;
+	public static final String URL_UNLOCK = "/" + JSP_UNLOCK;
 	
 	@Autowired
 	InterfaceUserService service;
@@ -46,7 +50,7 @@ public class UserController {
         return JSP_LOGIN;
     }
 	
-	@PostMapping("/login")
+	@PostMapping(URL_LOGIN)
     public String login(@ModelAttribute(MODEL_ATTRIBUTE_LOGIN) Login login, BindingResult result, Model model) {
 		LoginValidator loginValidator = new LoginValidator();
 		loginValidator.validate(login, result);
@@ -74,7 +78,7 @@ public class UserController {
 		}
     }
 	
-	@PostMapping("/unlockaccount")
+	@PostMapping(URL_UNLOCK)
 	public String unlockAccount(@ModelAttribute(MODEL_ATTRIBUTE_LOGIN) Login login, 
 								@ModelAttribute(MODEL_ATTRIBUTE_SECRET) Login secret, 
 								BindingResult result, Model model) {
@@ -101,9 +105,9 @@ public class UserController {
 	
 	private String getWelcomeByUserType(User user) {
 		if (user instanceof AccountHolder) {
-			return JSP_WELCOME;
+			return JSP_HOME_ACCOUNT_HOLDER;
 		} else if (user instanceof BankAdmin) {
-			return JSP_WELCOME;
+			return JSP_HOME_BANK_ADMIN;
 		}
 		return JSP_LOGIN;
 	}
