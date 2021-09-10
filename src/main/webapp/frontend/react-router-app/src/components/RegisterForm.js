@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import '../App.css';
 
-export class LoginForm extends Component {
+export class RegisterForm extends Component {
     constructor(props) {
         super(props)
 
@@ -14,24 +14,20 @@ export class LoginForm extends Component {
     }
 
     handleSubmit = (event) => {
-        //Todo: Add error handling & lock account msg 
-        alert(`${this.state.username} ${this.state.password}`)
-        //Assume it is sucessful verification
+        // check for valid inputs
+        // if valid
         //Check the user type as well
-        this.setState({redirect:"/home"});
-        //event.preventDefault() will prevent page from refreshing after clicking ok on alert
+        this.setState({redirect:"/"});
+
+        // if not valid
+        // raise alert message
+        // alert(`EXAMPLE User name is taken`)
         event.preventDefault()
     }
 
-    handleUnlock = (event) => {
-        this.setState({redirect:"/unlockaccount"});
+    handleBack = (event) => {
+        this.setState({redirect:"/"});
         event.preventDefault()
-    }
-
-    handleRegister = (event) => {
-        alert(`in handleRegister`);
-        this.setState({redirect:"/registerpage"});
-        event.preventDefault();
     }
 
     handleNameChange = (event) => { 
@@ -70,11 +66,16 @@ export class LoginForm extends Component {
         }
         
         return (
-            <div className="loginForm">
+            <div className="registerForm">
                 <form onSubmit={this.handleSubmit}>
-                    <div className="loginInputs">
+                    <div className="registerInputs">
                         <div>
                             <br/>
+                            <label>Name : </label>
+                            <input type="text" value={this.state.username}
+                            onChange={this.handleNameChange} />
+                        </div>
+                        <div>
                             <label>Username : </label>
                             <input type="text" value={this.state.username}
                             onChange={this.handleUsernameChange} />
@@ -84,17 +85,25 @@ export class LoginForm extends Component {
                             <input type="text" value={this.state.password}
                             onChange={this.handlePasswordChange} />
                         </div>
+                        <div>
+                            <label>Secret Question : </label>
+                            <input type="text" value={this.state.password}
+                            onChange={this.handleSecretQuestionChange} />
+                        </div>
+                        <div>
+                            <label>Secret Answer : </label>
+                            <input type="text" value={this.state.password}
+                            onChange={this.handleSecretAnswerChange} />
+                        </div>
                     </div>
                     <br/>
-                    <button id='loginbtn' onClick={this.handleSubmit}>Login</button>
+                    <button id='loginbtn' onClick={this.handleSubmit}>Register Account</button>
                     <br/>
-                    <button id='inputbtn' onClick={this.handleUnlock}>Unlock Account</button>
-                    <br/>
-                    <button id='registerbtn' onclick={this.handleRegister}>Register New User</button>
+                    <button id='inputbtn' onClick={this.handleBack}>Back</button>
                 </form>
             </div>
         )
     }
 }
 
-export default LoginForm
+export default RegisterForm
