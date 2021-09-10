@@ -7,5 +7,7 @@ import com.onlinebankingsystem.users.AccountHolder;
 public interface InterfaceAccountHolderService {
 
 	BankStatement getMiniStatement(Account account);
+
+	BankStatement getDetailedStatement(Account account);
 	
 }
