@@ -6,6 +6,7 @@ import Login from './components/Login';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import UnlockPage from './pages/UnlockPage';
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
   // const [token, setToken] = useState();
@@ -15,11 +16,14 @@ function App() {
   // }
   
   return (
-    <Switch>
-        <Route exact path="/" component={LoginPage}/>
-        <Route path="/home" component={HomePage}/>
-        <Route path="/unlockaccount" component={UnlockPage}/>
-    </Switch>
+    <div className="App">
+      <Switch>
+          <Route exact path="/" component={LoginPage}/>
+          <Route path="/home" component={HomePage}/>
+          <Route path="/unlockaccount" component={UnlockPage}/>
+          <Route path="/registerpage" component={RegisterPage}/>
+      </Switch>
+    </div>
   );
 }
 

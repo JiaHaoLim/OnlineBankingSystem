@@ -14,7 +14,6 @@ function HomePage({usertype}) {
 
     return (
         <HashRouter>
-            <div>
                 <link href="./bootstrap-5.1.0-dist/css/bootstrap.min.css" rel="stylesheet"/>
                 <h1 className='homepageHeader'>Online Banking System - Home Page - Account Holder - SPA</h1>
                 <nav>
@@ -37,8 +36,7 @@ function HomePage({usertype}) {
                         <Route path="/changePassword" component={ChangePassword}/>
                     </Switch>
                 </div>
-                
-            </div>
+
         </HashRouter>
     )
 }
