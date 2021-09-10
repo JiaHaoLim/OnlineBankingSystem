@@ -1,5 +1,7 @@
 package com.onlinebankingsystem.users;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
@@ -49,9 +53,17 @@ public abstract class User {
 	@Column(name = LOCK_STATUS_COLUMN)
 	private boolean isLocked = false;
 	
-	public User() {}
+	public static final String DATE_COLUMN = "date";
+	@Column(name = DATE_COLUMN, nullable = false)
+	@Temporal(value = TemporalType.TIMESTAMP)
+	private Date date;
+	
+	public User() {
+		date = new Date();
+	}
 	
 	public User(String name, String loginUsername, String loginPassword, String secretQuestion, String secretAnswer) {
+		this();
 		this.name = name;
 		this.loginUsername = loginUsername;
 		this.loginPassword = loginPassword;
@@ -60,7 +72,7 @@ public abstract class User {
 	}
 
 	public User(String name, String loginUsername, String loginPassword, String secretQuestion, String secretAnswer,
-			int numFailedLogins, boolean isLocked) {
+			int numFailedLogins, boolean isLocked, Date date) {
 		this.name = name;
 		this.loginUsername = loginUsername;
 		this.loginPassword = loginPassword;
@@ -68,6 +80,7 @@ public abstract class User {
 		this.secretAnswer = secretAnswer;
 		this.numFailedLogins = numFailedLogins;
 		this.isLocked = isLocked;
+		this.date = date;
 	}
 
 	public int getId() {
@@ -146,5 +159,13 @@ public abstract class User {
 	
 	public void setIsLocked(boolean isLocked) {
 		setLocked(isLocked);
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 }
