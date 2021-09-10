@@ -22,9 +22,9 @@ public class ServiceRequest {
 	@Column(nullable = false, unique = true)
 	private int id;
 	
-	public static final String ACCOUNT_ID_COLUMN = "accountID";
+	public static final String ACCOUNT_ID_COLUMN = "accountId";
 	@Column(name = ACCOUNT_ID_COLUMN, nullable = false)
-	private int acccountID;
+	private int acccountId;
 	
 	public static final String TYPE_COLUMN = "type";
 	@Column(name = TYPE_COLUMN, nullable = false)
@@ -39,8 +39,8 @@ public class ServiceRequest {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date dateCreated;
 
-	public ServiceRequest(int acccountID, String type, Status status, Date dateCreated) {
-		this.acccountID = acccountID;
+	public ServiceRequest(int acccountId, String type, Status status, Date dateCreated) {
+		this.acccountId = acccountId;
 		this.type = type;
 		this.status = status;
 		this.dateCreated = dateCreated;
@@ -54,12 +54,12 @@ public class ServiceRequest {
 		this.id = id;
 	}
 
-	public int getAcccountID() {
-		return acccountID;
+	public int getAcccountId() {
+		return acccountId;
 	}
 
-	public void setAcccountID(int acccountID) {
-		this.acccountID = acccountID;
+	public void setAcccountId(int acccountId) {
+		this.acccountId = acccountId;
 	}
 
 	public String getType() {

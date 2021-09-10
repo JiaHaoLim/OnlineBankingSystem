@@ -34,18 +34,18 @@ public class Transaction {
 	@Column(name = AMOUNT_COLUMN, nullable = false)
 	private double amount;
 
-	public static final String ACCOUNT_ID_COLUMN = "accountID";
+	public static final String ACCOUNT_ID_COLUMN = "accountId";
 	@Column(name = ACCOUNT_ID_COLUMN, nullable = false)
-	private int accountID;
+	private int accountId;
 	
 	public Transaction() {}
 	
-	public Transaction(String description, String type, Date dateCreated, double amount, int accountID) {
+	public Transaction(String description, String type, Date dateCreated, double amount, int accountId) {
 		this.description = description;
 		this.type = type;
 		this.dateCreated = dateCreated;
 		this.amount = amount;
-		this.accountID = accountID;
+		this.accountId = accountId;
 	}
 
 	public int getId() {
@@ -88,11 +88,11 @@ public class Transaction {
 		this.amount = amount;
 	}
 
-	public int getAccountID() {
-		return accountID;
+	public int getAccountId() {
+		return accountId;
 	}
 
-	public void setAccountID(int accountID) {
-		this.accountID = accountID;
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
 	}
 }

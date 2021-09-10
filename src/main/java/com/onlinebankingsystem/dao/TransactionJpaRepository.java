@@ -10,7 +10,7 @@ import com.onlinebankingsystem.account.Transaction;
 
 @Repository(value = "TransactionJpaRepository")
 public interface TransactionJpaRepository extends InterfaceTransactionDao, JpaRepository<Transaction, Integer> {
-	List<Transaction> findFirst10ByAccountIDOrderByDateCreated(int accountID);
+	List<Transaction> findFirst10ByAccountIdOrderByDateCreated(int accountId);
 	
-	List<Transaction> findByAccountIDOrderByDateCreated(int accountID);
+	List<Transaction> findByAccountIdOrderByDateCreated(int accountId);
 }
