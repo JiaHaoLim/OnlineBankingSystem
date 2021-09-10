@@ -16,8 +16,10 @@ export class UnlockAccount extends Component {
         // Need to check whether secret answer is correct
         // if yes redirect to home
         this.setState({redirect:"/home"});
+        alert(`Account has been unlocked`)
         // else redirect to login
         // this.setState({redirect:"/"});
+        // alert(`Account has not been unlocked`)
         event.preventDefault()
     }
 
