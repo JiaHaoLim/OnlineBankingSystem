@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import '../App.css';
 
 export class UnlockAccount extends Component {
     constructor(props) {
@@ -16,8 +17,10 @@ export class UnlockAccount extends Component {
         // Need to check whether secret answer is correct
         // if yes redirect to home
         this.setState({redirect:"/home"});
+        alert(`Account has been unlocked`)
         // else redirect to login
         // this.setState({redirect:"/"});
+        // alert(`Account has not been unlocked`)
         event.preventDefault()
     }
 
@@ -39,22 +42,18 @@ export class UnlockAccount extends Component {
         }
         
         return (
-            <div>
+            <div className='unlockForm'>
                 <form onSubmit={this.handleSubmit}>
                     <div>
-                        <label>Secret Question : {this.state.secret_question}</label>
-                        {/* <select value={this.state.secret_question} onChange={this.handleSecretQuestionChange}>
-                            <option value="q1">What is your name?</option>
-                            <option value="q2">What is your favorite food?</option>
-                            <option value="q3">What is the name of your pet?</option>
-                        </select> */}
+                        <label>Secret Question : <label className='secretQ'>{this.state.secret_question}</label></label>
                     </div>
                     <div>
                         <label>Secret Answer : </label>
                         <input type="text" value={this.state.secret_answer}
                         onChange={this.handleSecretAnswerChange} />
                     </div>
-                    <button type="submit">Unlock Account</button>
+                    <br/>
+                    <button id='unlockbtn' type="submit">Unlock Account</button>
                 </form>
             </div>
         )

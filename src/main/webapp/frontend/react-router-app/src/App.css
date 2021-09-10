@@ -1,38 +1,120 @@
-.App {
+
+/* LoginForm.js and LoginPage.js */
+.loginHeader {
+  background-color: red;
+  margin: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:x-large;
+  font-weight: bold;
+}
+
+.loginForm{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.loginInputs{
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button#loginbtn {
+  font-size: larger;
+  padding: 10px;
+  width: 200px;
+  border-radius: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+button#inputbtn{
+  border-radius: 10px;
+  border-color: transparent;
+  background-color: #f5f5f5;
+}
+
+/* UnlockAccount.js and UnlockPage.js */
+.unlockHeader {
+  background-color: red;
+  margin: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
   color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:x-large;
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+.unlockForm {
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.secretQ {
+  font-size: large;
+  text-decoration: underline;
+}
+
+button#unlockbtn {
+  font-size: large;
+  padding: 10px;
+  width: 200px;
+  border-radius: 10px;
+}
+
+/* Homepage.js */
+.homepageHeader{
+  background-color: red;
+  margin: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  text-transform: uppercase;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-size:x-large;
+  font-weight: bold;
+}
+
+nav {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 100px;
+  background-color: gray;
+  font-family: "Montserrat", sans-serif;;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-around;
+  width: 50%;
+  margin: 10px;
+}
+
+.nav-links li {
+  width: 500px;
+  list-style: none;
+  margin: 6%;
+}
+
+.nav-links li a{
+  color: white;
+  align-items: center;
+  text-decoration: none;
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-size: 15px;
+  
+}
+
+.nav-links li:hover:not(.active){
+  background-color: darkgrey;
+}
+
+.nav-links li a.active{
+  text-decoration: underline;
 }
