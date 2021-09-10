@@ -35,8 +35,10 @@ public class UserController {
 	
 	public static final String JSP_LOGIN = "login";
 	public static final String JSP_UNLOCK = "unlockaccount";
-	public static final String JSP_HOME_ACCOUNT_HOLDER = "homeaccountholder";
-	public static final String JSP_HOME_BANK_ADMIN = "homebankadmin";
+	public static final String JSP_HOME_ACCOUNT_HOLDER = "home";
+	public static final String JSP_HOME_BANK_ADMIN = "home";
+//	public static final String JSP_HOME_ACCOUNT_HOLDER = "homeaccountholder";
+//	public static final String JSP_HOME_BANK_ADMIN = "homebankadmin";
 	
 	public static final String URL_LOGIN = "/" + JSP_LOGIN;
 	public static final String URL_UNLOCK = "/" + JSP_UNLOCK;
@@ -46,6 +48,8 @@ public class UserController {
 	
 	@GetMapping("/")
 	public String frontPage(Model model) {
+//		service.saveUser(new BankAdmin("Alice", "alicE", "A123", "What are your initials?", "A"));
+//		service.saveUser(new AccountHolder("Bobby", "BobbY", "B123", "What are your initials?", "B", "wherever Bobby lives", "98765432", "bob@email.com"));
 		model.addAttribute(MODEL_ATTRIBUTE_LOGIN, new Login());
         return JSP_LOGIN;
     }
@@ -85,9 +89,7 @@ public class UserController {
 		LoginValidator secretValidator = new LoginValidator(true);
 		secretValidator.validate(secret, result);
 		
-		System.out.println(login.getUsername());
 		Login temp = (Login) model.getAttribute(MODEL_ATTRIBUTE_LOGIN);
-		System.out.println(temp.getUsername());
 		
 		if (result.hasErrors()) {
 			return JSP_UNLOCK;
