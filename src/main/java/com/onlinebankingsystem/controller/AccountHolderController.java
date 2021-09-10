@@ -25,4 +25,9 @@ public class AccountHolderController {
 	public BankStatement getMiniStatement(@ModelAttribute("account") Account account) {
 		return service.getMiniStatement(account);
 	}
+	
+	@PostMapping(URL_DETAILED_STATEMENT)
+	public BankStatement getDetailedStatement(@ModelAttribute("account") Account account) {
+		return service.getDetailedStatement(account);
+	}
 }
