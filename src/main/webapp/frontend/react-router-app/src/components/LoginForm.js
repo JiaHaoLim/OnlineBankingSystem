@@ -15,7 +15,7 @@ export class LoginForm extends Component {
 
     handleSubmit = (event) => {
         //Todo: Add error handling & lock account msg 
-        alert(`${this.state.name} ${this.state.username} ${this.state.password} ${this.state.secret_question} ${this.state.secret_answer} `)
+        alert(`${this.state.username} ${this.state.password}`)
         //Assume it is sucessful verification
         //Check the user type as well
         this.setState({redirect:"/home"});
