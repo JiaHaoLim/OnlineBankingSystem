@@ -10,6 +10,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
+<<<<<<< Updated upstream
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 @EnableAutoConfiguration
@@ -19,10 +20,17 @@ public abstract class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false, unique = true)
+=======
+@Entity
+@Table(name = "users") // table name is users 
+public class User {
+	@Id // primary key created
+	@GeneratedValue(strategy = GenerationType.AUTO) //specify auto_increment in the definition of table to make it self-incremental
+>>>>>>> Stashed changes
 	private int id;
 	
 	public static final String NAME_COLUMN = "name";
-	@Column(name = NAME_COLUMN)
+	@Column(name = NAME_COLUMN) // giving name to table columns
 	private String name;
 	
 	public static final String LOGIN_USERNAME_COLUMN = "login_username";
