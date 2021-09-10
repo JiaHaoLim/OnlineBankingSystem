@@ -92,12 +92,12 @@ public class UserService implements InterfaceUserService {
 		// unlockUser() should only be called by UserController after calling
 		// getUserByLogin().
 		// As such, login must be valid user account credentials
-		System.out.println(login.getUsername());
+
 		Optional<User> optUser = dao.findByLoginUsername(login.getUsername());
-		System.out.println(optUser.isPresent());
+
 		User user = dao.findByLoginUsername(login.getUsername()).get();
 
-		if (secret.getPassword().equals(user.getSecretAnswer())) {
+		if (secret.getPassword().toLowerCase().equals(user.getSecretAnswer().toLowerCase())) {
 			user.setNumFailedLogins(0);
 			user.setLocked(false);
 			dao.save(user);
