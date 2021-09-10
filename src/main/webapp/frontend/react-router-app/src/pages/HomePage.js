@@ -6,6 +6,7 @@ import RequestforChequeBook from '../components/RequestforChequeBook';
 import TrackServiceRequest from '../components/TrackServiceRequest';
 import FundTransfer from '../components/FundTransfer';
 import ChangePassword from '../components/ChangePassword';
+import '../App.css';
 
 function HomePage({usertype}) {
     console.log(usertype === 1? "Account Holder" : "Admin")
@@ -14,15 +15,18 @@ function HomePage({usertype}) {
     return (
         <HashRouter>
             <div>
-                <h1>Online Banking System - Home Page - Account Holder - SPA</h1>
-                <ul className="header">
-                    <li><NavLink to="/viewStatements">View Mini/Detailed Statements</NavLink></li>
-                    <li><NavLink to="/changeProfile">Change in address/ mobile number</NavLink></li>
-                    <li><NavLink to="/requestforChequeBook">Request for Cheque Book</NavLink></li>
-                    <li><NavLink to="/trackServiceRequest">Track Service Request</NavLink></li>
-                    <li><NavLink to="/fundTransfer">Fund Transfer</NavLink></li>
-                    <li><NavLink to="/changePassword">Change Password</NavLink></li>
-                </ul>
+                <link href="./bootstrap-5.1.0-dist/css/bootstrap.min.css" rel="stylesheet"/>
+                <h1 className='homepageHeader'>Online Banking System - Home Page - Account Holder - SPA</h1>
+                <nav>
+                    <ul className="nav-links">
+                        <li a><NavLink to="/viewStatements">View Mini/Detailed Statements</NavLink></li>
+                        <li a><NavLink to="/changeProfile">Change in address/ mobile number</NavLink></li>
+                        <li a><NavLink to="/requestforChequeBook">Request for Cheque Book</NavLink></li>
+                        <li a><NavLink to="/trackServiceRequest">Track Service Request</NavLink></li>
+                        <li a><NavLink to="/fundTransfer">Fund Transfer</NavLink></li>
+                        <li a><NavLink to="/changePassword">Change Password</NavLink></li>
+                    </ul>
+                </nav>
                 <div className="content">
                     <Switch>
                         <Route path="/viewStatements" component={ViewStatements}/>
@@ -33,6 +37,7 @@ function HomePage({usertype}) {
                         <Route path="/changePassword" component={ChangePassword}/>
                     </Switch>
                 </div>
+                
             </div>
         </HashRouter>
     )

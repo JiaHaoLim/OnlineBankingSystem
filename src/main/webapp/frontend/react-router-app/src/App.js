@@ -7,11 +7,13 @@ import UnlockPage from './pages/UnlockPage';
 
 function App() {
   return (
-    <Switch>
-        <Route exact path="/" component={LoginPage}/>
-        <Route path="/home" component={HomePage}/>
-        <Route path="/unlockaccount" component={UnlockPage}/>
-    </Switch>
+    <div className="App">
+      <Switch>
+          <Route exact path="/" component={LoginPage}/>
+          <Route path="/home" component={HomePage}/>
+          <Route path="/unlockaccount" component={UnlockPage}/>
+      </Switch>
+    </div>
   );
 }
 

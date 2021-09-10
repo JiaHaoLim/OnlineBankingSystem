@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import '../App.css';
 
 export class LoginForm extends Component {
     constructor(props) {
@@ -68,20 +69,25 @@ export class LoginForm extends Component {
         }
         
         return (
-            <div>
+            <div className="loginForm">
                 <form onSubmit={this.handleSubmit}>
-                    <div>
-                        <label>Username : </label>
-                        <input type="text" value={this.state.username}
-                        onChange={this.handleUsernameChange} />
+                    <div className="loginInputs">
+                        <div>
+                            <br/>
+                            <label>Username : </label>
+                            <input type="text" value={this.state.username}
+                            onChange={this.handleUsernameChange} />
+                        </div>
+                        <div>
+                            <label>Password : </label>
+                            <input type="text" value={this.state.password}
+                            onChange={this.handlePasswordChange} />
+                        </div>
                     </div>
-                    <div>
-                        <label>Password : </label>
-                        <input type="text" value={this.state.password}
-                        onChange={this.handlePasswordChange} />
-                    </div>
-                    <button onClick={this.handleSubmit}>Login</button>
-                    <button onClick={this.handleUnlock}>Unlock Account</button>
+                    <br/>
+                    <button id='loginbtn' onClick={this.handleSubmit}>Login</button>
+                    <br/>
+                    <button id='inputbtn' onClick={this.handleUnlock}>Unlock Account</button>
                 </form>
             </div>
         )
