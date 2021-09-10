@@ -28,7 +28,7 @@ export class LoginForm extends Component {
         event.preventDefault()
     }
 
-    handleRegister = (event) => {
+    handleNewUser = (event) => {
         alert(`in handleRegister`);
         this.setState({redirect:"/registerpage"});
         event.preventDefault();
@@ -90,7 +90,7 @@ export class LoginForm extends Component {
                     <br/>
                     <button id='inputbtn' onClick={this.handleUnlock}>Unlock Account</button>
                     <br/>
-                    <button id='registerbtn' onclick={this.handleRegister}>Register New User</button>
+                    <button id='registerbtn' onClick={this.handleNewUser}>Register New User</button>
                 </form>
             </div>
         )
