@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.onlinebankingsystem.newAccount.Account;
 import com.onlinebankingsystem.newAccount.AccountValidator;
-import com.onlinebankingsystem.service.IAccService;
+import com.onlinebankingsystem.service.InterfaceAccountService;
 
 @Controller
 public class AccountController {
 	
 	@Autowired
-	private IAccService accService; 
+	private InterfaceAccountService accService; 
 	
 	@Autowired
 	private AccountValidator validator;
