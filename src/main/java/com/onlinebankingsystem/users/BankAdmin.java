@@ -11,13 +11,13 @@ public class BankAdmin extends User {
 		super();
 	}
 
-	public BankAdmin(String name, String loginUsername, String loginPassword, String secretQuestion,
+	public BankAdmin(String name, String username, String password, String secretQuestion,
 			String secretAnswer) {
-		super(name, loginUsername, loginPassword, secretQuestion, secretAnswer);
+		super(name, username, password, secretQuestion, secretAnswer);
 	}
 	
-	public BankAdmin(String name, String loginUsername, String loginPassword, String secretQuestion,
+	public BankAdmin(String name, String username, String password, String secretQuestion,
 			String secretAnswer, int numFailedLogins, boolean isLocked, Date dateCreated) {
-		super(name, loginUsername, loginPassword, secretQuestion, secretAnswer, numFailedLogins, isLocked, dateCreated);
+		super(name, username, password, secretQuestion, secretAnswer, numFailedLogins, isLocked, dateCreated);
 	}
 }

@@ -42,12 +42,12 @@ public class UserService implements InterfaceUserService {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public User getUserByLogin(Login login) {
-		Optional<User> optUser = dao.findByLoginUsername(login.getUsername());
+		Optional<User> optUser = dao.findByUsername(login.getUsername());
 		// We need to compare the username because some databases such as MySQL are not
 		// case sensitive
-		if (optUser.isPresent() && login.getUsername().equals(optUser.get().getLoginUsername())) {
+		if (optUser.isPresent() && login.getUsername().equals(optUser.get().getUsername())) {
 			User user = optUser.get();
-			if (login.getPassword().equals(optUser.get().getLoginPassword())) {
+			if (login.getPassword().equals(optUser.get().getPassword())) {
 				if (!user.isLocked()) {
 					if (user.getNumFailedLogins() > 0) {
 						user.setNumFailedLogins(0);
@@ -89,20 +89,20 @@ public class UserService implements InterfaceUserService {
 	}
 
 	@Override
-	public User unlockUser(Login login, Login secret) {
+	public boolean unlockUser(Login login, Login secret) {
 		// unlockUser() should only be called by UserController after calling
 		// getUserByLogin().
 		// As such, login must be valid user account credentials
 
-		Optional<User> optUser = dao.findByLoginUsername(login.getUsername());
+		Optional<User> optUser = dao.findByUsername(login.getUsername());
 
-		User user = dao.findByLoginUsername(login.getUsername()).get();
+		User user = dao.findByUsername(login.getUsername()).get();
 
 		if (secret.getPassword().toLowerCase().equals(user.getSecretAnswer().toLowerCase())) {
 			user.setNumFailedLogins(0);
 			user.setLocked(false);
 			dao.save(user);
-			return user;
+			return true;
 		} else {
 			throw new IncorrectSecretAnswerException();
 		}
