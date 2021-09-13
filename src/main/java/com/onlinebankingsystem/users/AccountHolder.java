@@ -32,16 +32,16 @@ public class AccountHolder extends User {
 	
 	public AccountHolder() {}
 	
-	public AccountHolder(String name, String loginUsername, String loginPassword, String secretQuestion,
+	public AccountHolder(String name, String username, String password, String secretQuestion,
 			String secretAnswer, String address, String mobileNumber, String email) {
-		super(name, loginUsername, loginPassword, secretQuestion, secretAnswer);
+		super(name, username, password, secretQuestion, secretAnswer);
 		setDetails(address, mobileNumber, email);
 	}
 	
-	public AccountHolder(String name, String loginUsername, String loginPassword, String secretQuestion,
+	public AccountHolder(String name, String username, String password, String secretQuestion,
 			String secretAnswer, int numFailedLogins, boolean isLocked, Date dateCreated, 
 			String address, String mobileNumber, String email) {
-		super(name, loginUsername, loginPassword, secretQuestion, secretAnswer, numFailedLogins, isLocked, dateCreated);
+		super(name, username, password, secretQuestion, secretAnswer, numFailedLogins, isLocked, dateCreated);
 		setDetails(address, mobileNumber, email);
 	}
 	

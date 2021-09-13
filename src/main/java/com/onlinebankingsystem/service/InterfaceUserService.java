@@ -20,5 +20,5 @@ public interface InterfaceUserService {
 
 	void addNumFailedLogins(User user);
 
-	User unlockUser(Login login, Login secret);
+	boolean unlockUser(Login login, Login secret);
 }
