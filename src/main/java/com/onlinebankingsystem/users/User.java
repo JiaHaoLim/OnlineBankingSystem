@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +20,11 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 @Entity(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User extends Login {
+	enum Role {
+		ACCOUNT_HOLDER,
+		BANK_ADMIN
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false, unique = true)
@@ -39,14 +46,19 @@ public abstract class User extends Login {
 	@Column(name = NUM_FAILED_LOGINS_COLUMN)
 	protected int numFailedLogins = 0;
 	
-	public static final String LOCK_STATUS_COLUMN = "lock_status";
-	@Column(name = LOCK_STATUS_COLUMN)
+	public static final String IS_LOCKED_COLUMN = "is_locked";
+	@Column(name = IS_LOCKED_COLUMN)
 	protected boolean isLocked = false;
 	
 	public static final String DATE_COLUMN = "date_created";
 	@Column(name = DATE_COLUMN, nullable = false)
 	@Temporal(value = TemporalType.TIMESTAMP)
 	protected Date dateCreated;
+	
+	public static final String ROLE_COLUMN = "role";
+	@Enumerated(EnumType.STRING)
+	@Column(name = ROLE_COLUMN, nullable = false)
+	protected Role role;
 	
 	public User() {
 		dateCreated = new Date();
@@ -137,5 +149,13 @@ public abstract class User extends Login {
 
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 }
