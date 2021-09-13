@@ -21,6 +21,7 @@
 	Secret Answer: ${user.secretAnswer} <br>
 	Number of failed logins: ${user.numFailedLogins} <br>
 	Lock Status: ${user.isLocked} <br>
+	Date Created: ${user.dateCreated} <br>
 	<c:if test="${user.getClass().name == 'com.onlinebankingsystem.users.AccountHolder'}">
 		Address: ${user.address} <br>
 		Mobile Number: ${user.mobileNumber} <br>

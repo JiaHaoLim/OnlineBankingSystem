@@ -7,6 +7,6 @@ import com.onlinebankingsystem.users.User;
 
 public interface InterfaceUserDao {
 	
-	Optional<User> findByLoginUsername(String loginUsername);
+	Optional<User> findByUsername(String username);
 
 }

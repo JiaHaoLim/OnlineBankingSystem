@@ -2,6 +2,7 @@ package com.onlinebankingsystem.service;
 
 import java.util.List;
 
+import com.onlinebankingsystem.account.BankStatement;
 import com.onlinebankingsystem.users.Login;
 import com.onlinebankingsystem.users.User;
 
@@ -19,5 +20,5 @@ public interface InterfaceUserService {
 
 	void addNumFailedLogins(User user);
 
-	User unlockUser(Login login, Login secret);
+	boolean unlockUser(Login login, Login secret);
 }
