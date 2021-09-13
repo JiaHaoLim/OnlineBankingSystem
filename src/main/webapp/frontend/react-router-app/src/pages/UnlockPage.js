@@ -1,6 +1,6 @@
 import React from 'react';
-import UnlockAccount from '../components/UnlockAccount';
-import Footer from '../components/Footer';
+import UnlockAccount from '../components/App/UnlockAccount';
+import Footer from '../components/App/Footer';
 import '../App.css';
 
 function UnlockPage() {

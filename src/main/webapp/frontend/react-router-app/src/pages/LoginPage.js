@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 //import Login from '../components/Login';
-import LoginForm from '../components/LoginForm_backup';
-import Footer from '../components/Footer';
+import LoginForm from '../components/archive/LoginForm_backup';
+import Footer from '../components/App/Footer';
 import PropTypes from 'prop-types';
 import '../App.css';
 

@@ -30,7 +30,14 @@ https://stormpath.com/blog/spring-boot-stormpath-react-sdk
 https://www.baeldung.com/spring-security-login-react
 
 # How to add Login Authentication to React Application
-# use token, express cors, session
+# set up token
+# install express and cors
+# A token can be stored in:
+1. JS memory 
+2. sessionStorage
+3. localStorage
+4. cookie
+5. non-memory storage
 https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications
 
 # How to handle routing in React Apps with React Router

@@ -3,9 +3,9 @@ import {Route, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Footer from './Footer';
 
-import '../App.css';
-import HomePageAcHolder from '../pages/HomePageAcHolder';
-import HomePageAdmin from '../pages/HomePageAdmin';
+import '../../App.css';
+import HomePageAcHolder from '../../pages/HomePageAcHolder';
+import HomePageAdmin from '../../pages/HomePageAdmin';
 
 async function loginUser(credentials) {
   // console.log(credentials);
@@ -54,14 +54,15 @@ export default function Login({ setToken }) {
     setToken(token);
 
     if (token.data.role == "ACCOUNT_HOLDER") {
-        // return <HomePageAcHolder user={token}/>
+        return <HomePageAcHolder user={token}/>
         // <Redirect to={{
         //   pathname: '/home1',
         //   state: { id: '0' }
         // }}/>
-        <Route path="/home1" component={HomePageAcHolder}/>
+        // <Route path="/home1" component={HomePageAcHolder}/>
     } else if (token.data.role == "BANK_ADMIN") {
         return <HomePageAdmin user={token}/>
+        // <Route path="/home2" component={HomePageAdmin}/>
     }
   }
 
