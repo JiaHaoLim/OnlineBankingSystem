@@ -20,8 +20,8 @@ function App() {
   return (
     <div className="App">
       <Switch>
-          <Route path="/home1" component={HomePageAcHolder(user)}/>
-          <Route path="/home2" component={HomePageAdmin(user)}/>
+          <Route path="/home1" component={HomePageAcHolder}/>
+          <Route path="/home2" component={HomePageAdmin}/>
           <Route path="/unlockaccount" component={UnlockPage}/>
           <Route path="/registerpage" component={RegisterPage}/>
       </Switch>
