@@ -26,7 +26,7 @@ public class UserService implements InterfaceUserService {
 	public static final int MAX_FAILED_ATTEMPTS = AppConfig.MAX_FAILED_ATTEMPTS; 
 
 	@Autowired
-	@Qualifier(value = "UserJpaRepository")
+	@Qualifier(value = AppConfig.USER_DAO)
 	private InterfaceUserDao dao;
 
 	@Override

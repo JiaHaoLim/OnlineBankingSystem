@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.onlinebankingsystem.config.AppConfig;
 import com.onlinebankingsystem.dao.AccountHolderJpaRepository;
 import com.onlinebankingsystem.dao.interfaces.InterfaceAccountHolderDao;
 import com.onlinebankingsystem.service.interfaces.InterfaceAccountHolderService;
@@ -15,7 +16,7 @@ import com.onlinebankingsystem.users.AccountHolder;
 public class AccountHolderService implements InterfaceAccountHolderService {
 	
 	@Autowired
-	@Qualifier(value = "AccountHolderJpaRepository")
+	@Qualifier(value = AppConfig.ACCOUNT_HOLDER_DAO)
 	private InterfaceAccountHolderDao accountHolderDao;
 
 	@Override
