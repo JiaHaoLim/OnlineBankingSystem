@@ -7,31 +7,35 @@ import org.springframework.stereotype.Service;
 import com.onlinebankingsystem.account.Account;
 import com.onlinebankingsystem.account.BankStatement;
 import com.onlinebankingsystem.dao.AccountHolderJpaRepository;
+import com.onlinebankingsystem.dao.AccountJpaRepository;
 import com.onlinebankingsystem.dao.TransactionJpaRepository;
 import com.onlinebankingsystem.users.AccountHolder;
 
 @Service
 public class AccountHolderService implements InterfaceAccountHolderService {
+	@Autowired
+	@Qualifier(value = "AccountJpaRepository")
+	private AccountJpaRepository accountDao;
 	
 	@Autowired
 	@Qualifier(value = "AccountHolderJpaRepository")
-	private AccountHolderJpaRepository ahDao;
+	private AccountHolderJpaRepository accountHolderDao;
 	
 	@Autowired
 	@Qualifier(value = "TransactionJpaRepository")
-	private TransactionJpaRepository tDao;
+	private TransactionJpaRepository transactionDao;
 
 	@Override
-	public BankStatement getMiniStatement(int id) {
-		AccountHolder accountHolder = ahDao.getById(id);
+	public BankStatement getMiniStatement(int accountId) {
+		AccountHolder accountHolder = accountDao.getById(accountId).getAccountHolder();
 		return new BankStatement(accountHolder.getName(), accountHolder.getAddress(), 
-								tDao.findFirst10ByAccountIdOrderByDateCreated(id));
+								transactionDao.findFirst10ByAccountIdOrderByDateCreated(accountId));
 	}
 
 	@Override
-	public BankStatement getDetailedStatement(int id) {
-		AccountHolder accountHolder = ahDao.getById(id);
+	public BankStatement getDetailedStatement(int accountId) {
+		AccountHolder accountHolder = accountDao.getById(accountId).getAccountHolder();
 		return new BankStatement(accountHolder.getName(), accountHolder.getAddress(), 
-								tDao.findByAccountIdOrderByDateCreated(id));
+								transactionDao.findByAccountIdOrderByDateCreated(accountId));
 	}
 }

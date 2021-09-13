@@ -10,7 +10,7 @@
 	<h2> Create New Account</h2>
 	<form method="post" action ="create"> 
 		AccountType: <input type ="text" name = "account_type"><br> 
-		Balance: <input type ="number" name = "opening_balance"><br>
+		Balance: <input type ="number" step = "0.01" name = "acc_balance"><br>
 		<input type = "submit" value= "Create Account"></button>
 	</form>
 
