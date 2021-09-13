@@ -9,8 +9,8 @@ import ChangePassword from '../components/ChangePassword';
 import Footer from '../components/Footer';
 import '../App.css';
 
-function HomePageAcHolder() {
-    // console.log(usertype === 1? "Account Holder" : "Admin")
+function HomePageAcHolder({user}) {
+    console.log(user.data.role);
 
     return (
         <HashRouter>

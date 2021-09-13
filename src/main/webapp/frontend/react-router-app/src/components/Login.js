@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import '../App.css';
 import HomePageAcHolder from '../pages/HomePageAcHolder';
+import HomePageAdmin from '../pages/HomePageAdmin';
 
 async function loginUser(credentials) {
   // console.log(credentials);
@@ -48,8 +49,12 @@ export default function Login({ setToken }) {
     });
     console.log(token);
     setToken(token);
-    //check if role = 1 
-    return <HomePageAcHolder/>
+    
+    if (token.data.role == "ACCOUNT_HOLDER") {
+        return <HomePageAcHolder user={token}/>
+    } else if (token.data.role == "BANK_ADMIN") {
+        return <HomePageAdmin user={token}/>
+    }
   }
 
   return(

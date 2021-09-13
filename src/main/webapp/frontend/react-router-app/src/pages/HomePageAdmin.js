@@ -9,8 +9,8 @@ import ChangePassword from '../components/ChangePassword';
 import Footer from '../components/Footer';
 import '../App.css';
 
-function HomePageAdmin() {
-    // console.log(usertype === 1? "Account Holder" : "Admin")
+function HomePageAdmin({user}) {
+    console.log(user.data.role);
     
 
     return (
