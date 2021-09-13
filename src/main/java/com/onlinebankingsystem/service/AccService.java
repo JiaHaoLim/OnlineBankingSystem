@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mapping.AccessOptions.SetOptions.Propagation;
 import org.springframework.stereotype.Service;
 
+import com.onlinebankingsystem.account.Account;
 import com.onlinebankingsystem.dao.AccjpaRespository;
-import com.onlinebankingsystem.newAccount.Account;
+
 
 //@Service a specialization of @Component annotation. 
 //Spring Service annotation can be applied only to classes. 
@@ -26,6 +27,8 @@ public class AccService implements IAccService {
 		dao.save(account);
 		
 	}
+
+	
 
 	
 
