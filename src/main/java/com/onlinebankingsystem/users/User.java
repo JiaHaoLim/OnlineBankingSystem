@@ -1,80 +1,72 @@
 package com.onlinebankingsystem.users;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-@Entity
-@Table(name = "users")
-public class User {
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
+@EnableAutoConfiguration
+@Entity(name = "user")
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class User extends Login {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	@Column(nullable = false, unique = true)
+	protected int id;
 	
 	public static final String NAME_COLUMN = "name";
-	@Column(name = NAME_COLUMN)
-	private String name;
-	
-	public static final String LOGIN_USERNAME_COLUMN = "login_username";
-	@Column(name = LOGIN_USERNAME_COLUMN)
-	private String loginUsername;
-	
-	public static final String LOGIN_PASSWORD_COLUMN = "login_password";
-	@Column(name = LOGIN_PASSWORD_COLUMN)
-	private String loginPassword;
+	@Column(name = NAME_COLUMN, nullable = false)
+	protected String name;
 	
 	public static final String SECRET_QUESTION_COLUMN = "secret_question";
-	@Column(name = SECRET_QUESTION_COLUMN)
-	private String secretQuestion;
+	@Column(name = SECRET_QUESTION_COLUMN, nullable = false)
+	protected String secretQuestion;
 	
 	public static final String SECRET_ANSWER_COLUMN = "secret_answer";
-	@Column(name = SECRET_ANSWER_COLUMN)
-	private String secretAnswer;
+	@Column(name = SECRET_ANSWER_COLUMN, nullable = false)
+	protected String secretAnswer;
 	
 	public static final String NUM_FAILED_LOGINS_COLUMN = "num_failed_logins";
 	@Column(name = NUM_FAILED_LOGINS_COLUMN)
-	private int numFailedLogins;
+	protected int numFailedLogins = 0;
 	
 	public static final String LOCK_STATUS_COLUMN = "lock_status";
 	@Column(name = LOCK_STATUS_COLUMN)
-	private boolean isLocked;
+	protected boolean isLocked = false;
 	
-	public static final String EMAIL_ADDRESS_COLUMN = "email_address";
-	@Column(name = EMAIL_ADDRESS_COLUMN)
-	private String emailAddress;
+	public static final String DATE_COLUMN = "date_created";
+	@Column(name = DATE_COLUMN, nullable = false)
+	@Temporal(value = TemporalType.TIMESTAMP)
+	protected Date dateCreated;
 	
-	public static final String MOBILE_NUM_COLUMN = "mobile_number";
-	@Column(name = MOBILE_NUM_COLUMN)
-	private String mobileNumber;
+	public User() {
+		dateCreated = new Date();
+	}
 	
-	public User() {}
-	
-	public User(String name, String loginUsername, String loginPassword, String secretQuestion, String secretAnswer,
-			int numFailedLogins, boolean isLocked, String emailAddress, String mobileNumber) {
-		super();
+	public User(String name, String username, String password, String secretQuestion, String secretAnswer) {
+		this();
 		this.name = name;
-		this.loginUsername = loginUsername;
-		this.loginPassword = loginPassword;
+		this.username = username;
+		this.password = password;
 		this.secretQuestion = secretQuestion;
 		this.secretAnswer = secretAnswer;
-		this.numFailedLogins = numFailedLogins;
-		this.isLocked = isLocked;
-		this.emailAddress = emailAddress;
-		this.mobileNumber = mobileNumber;
 	}
 
-	public User(String name, String loginUsername, String loginPassword, String secretQuestion, String secretAnswer,
-			int numFailedLogins, boolean isLocked) {
-		this.name = name;
-		this.loginUsername = loginUsername;
-		this.loginPassword = loginPassword;
-		this.secretQuestion = secretQuestion;
-		this.secretAnswer = secretAnswer;
+	public User(String name, String username, String password, String secretQuestion, String secretAnswer,
+			int numFailedLogins, boolean isLocked, Date dateCreated) {
+		this(name, username, password, secretQuestion, secretAnswer);
 		this.numFailedLogins = numFailedLogins;
 		this.isLocked = isLocked;
+		this.dateCreated = dateCreated;
 	}
 
 	public int getId() {
@@ -91,22 +83,6 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getLoginUsername() {
-		return loginUsername;
-	}
-
-	public void setLoginUsername(String loginUsername) {
-		this.loginUsername = loginUsername;
-	}
-
-	public String getLoginPassword() {
-		return loginPassword;
-	}
-
-	public void setLoginPassword(String loginPassword) {
-		this.loginPassword = loginPassword;
 	}
 
 	public String getSecretQuestion() {
@@ -155,20 +131,11 @@ public class User {
 		setLocked(isLocked);
 	}
 
-	public String getEmailAddress() {
-		return emailAddress;
+	public Date getDateCreated() {
+		return dateCreated;
 	}
 
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
-
-	public String getMobileNumber() {
-		return mobileNumber;
-	}
-
-	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
-	}
-	
 }

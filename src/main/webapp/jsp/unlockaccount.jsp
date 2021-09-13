@@ -18,7 +18,7 @@
 	Your secret question: ${secret.username} <br>
 
 	<form:form method="post" modelAttribute="<%=UserController.MODEL_ATTRIBUTE_SECRET%>" action="unlockaccount">
-		<spring:message code="secret.answer"></spring:message>
+		<spring:message code="secret.password"></spring:message>
 		<form:input path="password" />
 		<form:errors path="password"></form:errors>
 		<br>

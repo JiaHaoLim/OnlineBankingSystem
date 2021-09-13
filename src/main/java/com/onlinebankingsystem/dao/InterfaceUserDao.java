@@ -5,7 +5,8 @@ import java.util.Optional;
 
 import com.onlinebankingsystem.users.User;
 
-public interface IDao {
-
+public interface InterfaceUserDao {
+	
+	Optional<User> findByUsername(String username);
 
 }

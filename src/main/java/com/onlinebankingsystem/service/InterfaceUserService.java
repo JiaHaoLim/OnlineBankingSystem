@@ -2,11 +2,11 @@ package com.onlinebankingsystem.service;
 
 import java.util.List;
 
-import com.onlinebankingsystem.login.Login;
+import com.onlinebankingsystem.account.BankStatement;
+import com.onlinebankingsystem.users.Login;
 import com.onlinebankingsystem.users.User;
 
-public interface IService {
-	boolean userLogin(String username, String password);
+public interface InterfaceUserService {
 	
 	List<User> getAllUsers();
 
@@ -19,6 +19,6 @@ public interface IService {
 	User getUserByLogin(Login login);
 
 	void addNumFailedLogins(User user);
-	
-//	List<User> findByIdOrName(int id, String name);
+
+	boolean unlockUser(Login login, Login secret);
 }
