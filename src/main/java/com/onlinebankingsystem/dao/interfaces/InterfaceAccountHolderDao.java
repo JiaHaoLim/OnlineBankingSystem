@@ -1,4 +1,4 @@
-package com.onlinebankingsystem.dao;
+package com.onlinebankingsystem.dao.interfaces;
 
 public interface InterfaceAccountHolderDao {
 

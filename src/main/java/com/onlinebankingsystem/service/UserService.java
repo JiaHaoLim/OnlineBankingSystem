@@ -15,6 +15,7 @@ import com.onlinebankingsystem.exception.IncorrectLoginPasswordException;
 import com.onlinebankingsystem.exception.IncorrectLoginUsernameException;
 import com.onlinebankingsystem.exception.IncorrectSecretAnswerException;
 import com.onlinebankingsystem.exception.LockedUserException;
+import com.onlinebankingsystem.service.interfaces.InterfaceUserService;
 import com.onlinebankingsystem.users.Login;
 import com.onlinebankingsystem.users.User;
 

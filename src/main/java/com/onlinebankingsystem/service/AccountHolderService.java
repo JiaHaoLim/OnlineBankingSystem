@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.onlinebankingsystem.dao.AccountHolderJpaRepository;
+import com.onlinebankingsystem.service.interfaces.InterfaceAccountHolderService;
 import com.onlinebankingsystem.users.AccountHolder;
 
 @Service

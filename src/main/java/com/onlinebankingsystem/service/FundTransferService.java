@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.onlinebankingsystem.account.Account;
 import com.onlinebankingsystem.dao.FundTransferJpaRespository;
+import com.onlinebankingsystem.service.interfaces.InterfaceFundTransferService;
 
 @Service
 public class FundTransferService implements InterfaceFundTransferService {
