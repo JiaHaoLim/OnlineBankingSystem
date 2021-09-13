@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity(name = "service")
+@Entity(name = "service_request")
 public class ServiceRequest {
 	enum Status {
 		OPEN,
@@ -39,6 +39,15 @@ public class ServiceRequest {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date dateCreated;
 
+	public ServiceRequest() {}
+	
+	public ServiceRequest(int acccountId, String type, Status status) {
+		this.acccountId = acccountId;
+		this.type = type;
+		this.status = status;
+		this.dateCreated = new Date();
+	}
+	
 	public ServiceRequest(int acccountId, String type, Status status, Date dateCreated) {
 		this.acccountId = acccountId;
 		this.type = type;
