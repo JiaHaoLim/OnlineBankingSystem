@@ -1,4 +1,4 @@
-package com.onlinebankingsystem.service;
+package com.onlinebankingsystem.service.interfaces;
 
 public interface InterfaceAccountHolderService {
 
