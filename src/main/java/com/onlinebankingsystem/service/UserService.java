@@ -47,7 +47,7 @@ public class UserService implements InterfaceUserService {
 		// case sensitive
 		if (optUser.isPresent() && login.getUsername().equals(optUser.get().getUsername())) {
 			User user = optUser.get();
-			if (login.getPassword().equals(optUser.get().getPassword())) {
+			if (login.getPassword().equals(user.getPassword())) {
 				if (!user.isLocked()) {
 					if (user.getNumFailedLogins() > 0) {
 						user.setNumFailedLogins(0);
