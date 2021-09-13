@@ -10,7 +10,7 @@ import com.onlinebankingsystem.account.Account;
 
 
 @Repository(value = "FundTransferJpaRespository")
-public interface FundTransferJpaRespository extends IFundTransferDao, JpaRepository<Account, Double> {
+public interface FundTransferJpaRespository extends InterfaceFundTransferDao, JpaRepository<Account, Double> {
 	 
 	Optional<Account> findByAccountNumber(String AccountNumber ); // optional can return null
 

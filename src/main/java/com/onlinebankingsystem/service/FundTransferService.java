@@ -10,7 +10,7 @@ import com.onlinebankingsystem.account.Account;
 import com.onlinebankingsystem.dao.FundTransferJpaRespository;
 
 @Service
-public class FundTransferService implements IFundTransferService {
+public class FundTransferService implements InterfaceFundTransferService {
 
 	@Autowired
 	@Qualifier(value = "FundTransferJpaRespository")
