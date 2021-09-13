@@ -14,11 +14,14 @@ import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.onlinebankingsystem.dao.UserJpaRepository;
 import com.onlinebankingsystem.exception.IncorrectLoginPasswordException;
 import com.onlinebankingsystem.exception.IncorrectLoginUsernameException;
 import com.onlinebankingsystem.exception.IncorrectSecretAnswerException;
