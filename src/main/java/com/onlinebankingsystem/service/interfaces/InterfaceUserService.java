@@ -11,9 +11,9 @@ public interface InterfaceUserService {
 
 	User getUser(int id);
 
-	User saveUser(User user);
+	void saveUser(User user);
 
-	User deleteUser(int id);
+	void deleteUser(int id);
 
 	User getUserByLogin(Login login);
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.onlinebankingsystem.dao.AccountHolderJpaRepository;
+import com.onlinebankingsystem.dao.interfaces.InterfaceAccountHolderDao;
 import com.onlinebankingsystem.service.interfaces.InterfaceAccountHolderService;
 import com.onlinebankingsystem.users.AccountHolder;
 
@@ -15,7 +16,7 @@ public class AccountHolderService implements InterfaceAccountHolderService {
 	
 	@Autowired
 	@Qualifier(value = "AccountHolderJpaRepository")
-	private AccountHolderJpaRepository accountHolderDao;
+	private InterfaceAccountHolderDao accountHolderDao;
 
 	@Override
 	public boolean modifyMobile(int accountHolderId, String mobileNumber) {

@@ -1,10 +1,14 @@
 package com.onlinebankingsystem.dao.interfaces;
 
-
+import com.onlinebankingsystem.account.Account;
 
 public interface InterfaceAccountDao {
 
-	//public void saveAcc( Account account ); JpaRespositoryo can handle the saving automatically 
+	void save(Account account);
+
+	Account getById(int accountId);
+
+	
 
 }
                  

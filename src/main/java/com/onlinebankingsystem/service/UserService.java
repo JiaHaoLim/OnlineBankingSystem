@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.onlinebankingsystem.config.AppConfig;
 import com.onlinebankingsystem.dao.UserJpaRepository;
+import com.onlinebankingsystem.dao.interfaces.InterfaceUserDao;
 import com.onlinebankingsystem.exception.IncorrectLoginPasswordException;
 import com.onlinebankingsystem.exception.IncorrectLoginUsernameException;
 import com.onlinebankingsystem.exception.IncorrectSecretAnswerException;
@@ -26,7 +27,7 @@ public class UserService implements InterfaceUserService {
 
 	@Autowired
 	@Qualifier(value = "UserJpaRepository")
-	private UserJpaRepository dao;
+	private InterfaceUserDao dao;
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
@@ -78,15 +79,14 @@ public class UserService implements InterfaceUserService {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public User saveUser(User user) {
-		return dao.save(user);
+	public void saveUser(User user) {
+		dao.save(user);
 	}
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public User deleteUser(int id) {
+	public void deleteUser(int id) {
 		dao.deleteById(id);
-		return null;
 	}
 
 	@Override
