@@ -1,5 +1,7 @@
 {
   "devDependencies": {
-    "@types/node": "^16.9.1"
+    "@types/node": "^16.9.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
   }
 }

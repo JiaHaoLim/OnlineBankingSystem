@@ -3,16 +3,71 @@ import PropTypes from 'prop-types';
 
 import '../App.css';
 
-//this require the Express Server in Node.js
 async function loginUser(credentials) {
-    return fetch('http://localhost:9090/login', {
+  console.log(credentials);
+    // const [data, setData] = useState(null);
+    // const [loading, setLoading] = useState(true);
+    // const [error, setError] = useState(null);
+
+    // useEffect(() => { 
+    //   axios({
+    //       method: "post",
+    //       url: "http://localhost:7777/login",
+    //       headers: {'Content-Type': 'application/json'},
+    //       body: JSON.stringify(credentials)
+    //   }) 
+    //     .then((data) => { 
+    //       setData(data.json); 
+    //     }) 
+    //     .catch((error) => { 
+    //       console.error("Error fetching data: ", error); 
+    //       setError(error); 
+    //     }) 
+    //     .finally(() => { 
+    //       setLoading(false); 
+    //     }); 
+    // }, []); 
+
+    // if (loading) return "Loading...";
+    // if (error) return "Error!";
+    // if (data) return data.id;
+
+    // return fetch('http://localhost:9090/login', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(credentials)
+    // })
+    //   .then(data => data.json())
+
+    // POST request using fetch with error handling
+    const requestOptions = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(credentials)
-    })
-      .then(data => data.json())
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(credentials),
+    };
+
+  fetch('http://localhost:9090/login', requestOptions)
+      .then(async response => {
+          const isJson = response.headers.get('content-type')?.includes('application/json');
+          const data = isJson && await response.json();
+
+          // check for error response
+          if (!response.ok) {
+              // get error message from body or default to response status
+              const error = (data && data.message) || response.status;
+              return Promise.reject(error);
+          } else {
+              console.log(data);  //equal to user.java
+              return { userId: data.id }
+          }
+      })
+      .catch(error => {
+          console.error('There was an error!', error);
+          return { errorMessage: error.toString() };
+      });
+    
 }
 
 export default function Login({ setToken }) {
@@ -25,7 +80,7 @@ export default function Login({ setToken }) {
       username,
       password
     });
-    console.log(token)
+    console.log(token);
     setToken(token);
   }
 

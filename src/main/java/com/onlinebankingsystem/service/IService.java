@@ -6,6 +6,7 @@ import com.onlinebankingsystem.login.Login;
 import com.onlinebankingsystem.users.User;
 
 public interface IService {
+	boolean userLogin(String username, String password);
 	
 	List<User> getAllUsers();
 

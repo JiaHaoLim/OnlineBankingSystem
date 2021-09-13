@@ -9,11 +9,12 @@ import UnlockPage from './pages/UnlockPage';
 import RegisterPage from './pages/RegisterPage';
 
 function App() {
-  // const [token, setToken] = useState();
+  const [token, setToken] = useState();
 
-  // if(!token) {  //without a token user cannot go to other pages before sucessfully login
-  //   return <Login setToken={setToken} />
-  // }
+  if(!token) {  //without a token user cannot go to other pages before sucessfully login
+    return <Login setToken={setToken} />
+  }
+  console.log(token); //token should be user id
   
   return (
     <div className="App">

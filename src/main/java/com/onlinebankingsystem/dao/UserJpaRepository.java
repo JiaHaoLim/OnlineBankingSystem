@@ -16,7 +16,5 @@ import com.onlinebankingsystem.users.User;
 public interface UserJpaRepository extends IDao, JpaRepository<User, Integer> {
 
 	Optional<User> findByLoginUsername(String loginUsername);
-	Optional<User> findById(long id);
-	Optional<User> deleteById(long id);
 
 }

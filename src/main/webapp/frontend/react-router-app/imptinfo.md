@@ -1,6 +1,12 @@
 # Figma UI design Link
 https://www.figma.com/file/wP13k07jxYxRAZjXnbou1E/Untitled?node-id=0%3A1
 
+https://www.figma.com/file/A8ZG9FYSnMKswRTlWIXdfj/Admin-Page?node-id=4%3A51
+
+# What is a Single Page Architecture
+1. never include a page refresh
+2. 
+
 # Onlnie Banking System - System Diagram & SPA design
 https://docs.google.com/document/d/1Dl1oJQr5bqHhait5hAOokJ5rkQ5ChCb-WQW5pl6FvB8/edit
 
@@ -43,6 +49,7 @@ https://github.com/eirslett/frontend-maven-plugin
 npx create-react-app react-router-app
 npm install react-router-dom
 npm install axios
+npm install --save-dev express cors
 
 # git command
 git init
@@ -53,3 +60,5 @@ git status
 git remote add origin https://github.com/JiaHaoLim/OnlineBankingSystem.git
 git remote -v
 git push -u origin frontend
+npm list
+npm list <package>

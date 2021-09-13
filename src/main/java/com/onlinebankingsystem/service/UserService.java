@@ -85,6 +85,12 @@ public class UserService implements IService {
 		dao.deleteById(id);
 		return null;
 	}
+
+	@Override
+	public boolean userLogin(String username, String password) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 //	@Override
 //	@Transactional(propagation = Propagation.REQUIRED)
