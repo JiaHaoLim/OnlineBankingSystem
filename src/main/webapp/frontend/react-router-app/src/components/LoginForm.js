@@ -1,100 +1,111 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import '../App.css';
 
-export class LoginForm extends Component {
-    constructor(props) {
-        super(props)
+async function loginUser(credentials) {
+    console.log(credentials);
+    // POST request using fetch with error handling
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(credentials),
+    };
+  
+    return (
+      fetch('http://localhost:7777/login', requestOptions)
+      .then(async response => {
+          const isJson = response.headers.get('content-type')?.includes('application/json');
+          const data = isJson && await response.json();
+  
+          // check for error response
+          if (!response.ok) {
+              // get error message from body or default to response status
+              const error = (data && data.message) || response.status;
+              return Promise.reject(error);
+          } else {
+              console.log(data);  //equal to user.java
+              return {data}
+          }
+      })
+      .catch(error => {
+          console.error('There was an error!', error);
+          return { errorMessage: error.toString() };
+      })
+    )  
+}
 
-        this.state={
-            redirect: null,
-            username: '',
-            password:'',
-        }
-    }
+export default function LoginForm({setToken}) {
+    const [username, setUserName] = useState();
+    const [password, setPassword] = useState();
 
-    handleSubmit = (event) => {
-        //Todo: Add error handling & lock account msg 
-        alert(`${this.state.username} ${this.state.password}`)
-        //Assume it is sucessful verification
-        //Check the user type as well
-        this.setState({redirect:"/home"});
-        //event.preventDefault() will prevent page from refreshing after clicking ok on alert
-        event.preventDefault()
+    const handleSubmit = async e => {
+        e.preventDefault();
+        const token = await loginUser({
+          username,
+          password
+        });
+        console.log(token);
+        setToken(token);
     }
 
     handleUnlock = (event) => {
         this.setState({redirect:"/unlockaccount"});
         event.preventDefault()
     }
-
+    
     handleNewUser = (event) => {
         this.setState({redirect:"/registerpage"});
         event.preventDefault();
     }
-
+    
     handleNameChange = (event) => { 
         this.setState({
             name: event.target.value
         })
     }
-
-    handleUsernameChange = (event) => { 
-        this.setState({
-            username: event.target.value
-        })
-    }
-
-    handlePasswordChange = (event) => { 
-        this.setState({
-            password: event.target.value
-        })
-    } 
-
+    
     handleSecretQuestionChange = (event) => {
         this.setState({
             secret_question: event.target.value
         })
     }
-
+    
     handleSecretAnswerChange = (event) => {
         this.setState({
             secret_answer: event.target.value
         })
-    }
+    };
 
-    render() {
-        if (this.state.redirect) {
-            return <Redirect to={this.state.redirect}/>
-        }
-        
-        return (
-            <div className="loginForm">
-                <form onSubmit={this.handleSubmit}>
-                    <div className="loginInputs">
-                        <div>
-                            <br/>
-                            <label>Username : </label>
-                            <input type="text" value={this.state.username}
-                            onChange={this.handleUsernameChange} />
-                        </div>
-                        <div>
-                            <label>Password : </label>
-                            <input type="text" value={this.state.password}
-                            onChange={this.handlePasswordChange} />
-                        </div>
+    return (
+        <div className="loginForm">
+            <form onSubmit={this.handleSubmit}>
+                <div className="loginInputs">
+                    <div>
+                        <br/>
+                        <label>Username : </label>
+                        <input type="text" value={this.state.username}
+                        onChange={e => setUserName(e.target.value)} />
                     </div>
-                    <br/>
-                    <button id='loginbtn' onClick={this.handleSubmit}>Login</button>
-                    <br/>
-                    <button id='inputbtn' onClick={this.handleUnlock}>Unlock Account</button>
-                    <br/>
-                    <button id='registerbtn' onClick={this.handleNewUser}>Register New User</button>
-                </form>
-            </div>
-        )
-    }
+                    <div>
+                        <label>Password : </label>
+                        <input type="text" value={this.state.password}
+                        onChange={e => setPassword(e.target.value)} />
+                    </div>
+                </div>
+                <br/>
+                <button id='loginbtn' onClick={this.handleSubmit}>Login</button>
+                <br/>
+                <button id='inputbtn' onClick={this.handleUnlock}>Unlock Account</button>
+                <br/>
+                <button id='registerbtn' onClick={this.handleNewUser}>Register New User</button>
+            </form>
+        </div>
+    )    
+    
 }
 
-export default LoginForm
+LoginForm.propTypes = {
+    setToken: PropTypes.func.isRequired
+}

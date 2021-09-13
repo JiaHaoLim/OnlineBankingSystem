@@ -9,16 +9,14 @@ import ChangePassword from '../components/ChangePassword';
 import Footer from '../components/Footer';
 import '../App.css';
 
-function HomePage({usertype}) {
-    console.log(usertype === 1? "Account Holder" : "Admin")
-    
+function HomePageAcHolder() {
+    // console.log(usertype === 1? "Account Holder" : "Admin")
 
     return (
         <HashRouter>
                 <link href="./bootstrap-5.1.0-dist/css/bootstrap.min.css" rel="stylesheet"/>
                 <h1 className='homepageHeader'>ONLINE BANKING SYSTEM
-                    <h3 className='homepageHeaderSmall'>Account Holder [add account holder name] <br/> 
-                                                        SPA
+                    <h3 className='homepageHeaderSmall'>Account Holder [add account holder name] <br/>
                     </h3>
                 </h1>
                 <nav>
@@ -47,4 +45,4 @@ function HomePage({usertype}) {
     )
 }
 
-export default HomePage
+export default HomePageAcHolder

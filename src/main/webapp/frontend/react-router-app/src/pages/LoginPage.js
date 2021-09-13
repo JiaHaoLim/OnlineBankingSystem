@@ -1,17 +1,23 @@
-import React from 'react';
-import LoginForm from '../components/LoginForm';
+import React, {useState} from 'react';
+//import Login from '../components/Login';
+import LoginForm from '../components/LoginForm_backup';
 import Footer from '../components/Footer';
+import PropTypes from 'prop-types';
 import '../App.css';
 
-function LoginPage({setToken}) {
+export default function LoginPage() {
     return (
         <div>
             <h3 className='loginHeader'>Banking System Login</h3>
-            <LoginForm/>
+            {/* <Login/> */}
+            <LoginForm setToken={setToken}/>
             <Footer/>
         </div>
     )
 }
 
-export default LoginPage
+
+LoginPage.propTypes = {
+    setToken: PropTypes.func.isRequired
+}
 
