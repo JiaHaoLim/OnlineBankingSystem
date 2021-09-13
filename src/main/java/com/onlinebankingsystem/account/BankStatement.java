@@ -3,6 +3,8 @@ package com.onlinebankingsystem.account;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class BankStatement {
 	private String name;
 	private String address;

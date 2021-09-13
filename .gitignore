@@ -4,6 +4,12 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# dependencies
+src/main/webapp/frontend/node_modules
+src/main/webapp/frontend/react-router-app/node_modules
+/.pnp
+.pnp.js
+
 ### STS ###
 .apt_generated
 .classpath

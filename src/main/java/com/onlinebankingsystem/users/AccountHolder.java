@@ -30,12 +30,16 @@ public class AccountHolder extends User {
 	@JoinColumn(name = "account_holder_id")
 	private List<Account> accounts;
 	
-	public AccountHolder() {}
+	public AccountHolder() {
+		super();
+		this.role = Role.ACCOUNT_HOLDER;
+	}
 	
 	public AccountHolder(String name, String username, String password, String secretQuestion,
 			String secretAnswer, String address, String mobileNumber, String email) {
 		super(name, username, password, secretQuestion, secretAnswer);
 		setDetails(address, mobileNumber, email);
+		this.role = Role.ACCOUNT_HOLDER;
 	}
 	
 	public AccountHolder(String name, String username, String password, String secretQuestion,
@@ -43,9 +47,11 @@ public class AccountHolder extends User {
 			String address, String mobileNumber, String email) {
 		super(name, username, password, secretQuestion, secretAnswer, numFailedLogins, isLocked, dateCreated);
 		setDetails(address, mobileNumber, email);
+		this.role = Role.ACCOUNT_HOLDER;
 	}
 	
 	private void setDetails(String address, String mobileNumber, String email) {
+		this.role = Role.ACCOUNT_HOLDER;
 		this.address = address;
 		this.mobileNumber = mobileNumber;
 		this.email = email;

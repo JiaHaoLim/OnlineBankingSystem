@@ -1,7 +1,5 @@
 package com.onlinebankingsystem.controller;
 
-
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,45 +15,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.onlinebankingsystem.newAccount.Account;
-import com.onlinebankingsystem.newAccount.AccountValidator;
-import com.onlinebankingsystem.service.IAccService;
+import com.onlinebankingsystem.account.Account;
+
+import com.onlinebankingsystem.service.InterfaceAccountService;
 
 @Controller
 public class AccountController {
-	
+
+//	public static final String CREATATION_OF_ACCOUNT = "create";
+//	public static final String URL_CREATE_ACC = "/" + CREATATION_OF_ACCOUNT;
+
 	@Autowired
-	private IAccService accService; 
-	
-	@Autowired
-	private AccountValidator validator;
-	
-	@GetMapping(path ="/create")
-	public String CreatingAccForm(Account a)
-	{
+	private InterfaceAccountService accountService;
+
+	@GetMapping(path = "/create")
+	public String CreatingAccForm(Account a) {
 		return "newaccount";
-		
+
 	}
-	
-	
+
 	@PostMapping(path = "/create")
-   // @Transactional(propagation = Propagation.REQUIRED)
-	public String CreateNewAcc(@Valid @ModelAttribute("acc") Account a, BindingResult result){
+	// @Transactional(propagation = Propagation.REQUIRED)
+	public String CreateNewAcc(Account a) {
 		System.out.println("Inside CreateNewAcc()");
 		System.out.println(a);
-		//invoking validator before invoking the service layer
-		validator.validate(a, result);
-		if(result.hasErrors())
-		{
-			return "newaccount";
-		}
-		
-		
-		accService.saveAccount(a);
+
+		accountService.saveAccount(a);
 		return "Success";
-		
+
 	}
-	
-	
-	
 }
