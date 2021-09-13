@@ -60,9 +60,7 @@ public abstract class User extends Login {
 	@Column(name = ROLE_COLUMN, nullable = false)
 	protected Role role;
 	
-	public User() {
-		dateCreated = new Date();
-	}
+	public User() {}
 	
 	public User(String name, String username, String password, String secretQuestion, String secretAnswer) {
 		this();
@@ -71,6 +69,7 @@ public abstract class User extends Login {
 		this.password = password;
 		this.secretQuestion = secretQuestion;
 		this.secretAnswer = secretAnswer;
+		dateCreated = new Date();
 	}
 
 	public User(String name, String username, String password, String secretQuestion, String secretAnswer,
