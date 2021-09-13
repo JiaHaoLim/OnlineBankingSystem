@@ -2,6 +2,7 @@ package com.onlinebankingsystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import com.onlinebankingsystem.account.Account;
 import com.onlinebankingsystem.account.BankStatement;
@@ -9,6 +10,7 @@ import com.onlinebankingsystem.dao.AccountHolderJpaRepository;
 import com.onlinebankingsystem.dao.TransactionJpaRepository;
 import com.onlinebankingsystem.users.AccountHolder;
 
+@Service
 public class AccountHolderService implements InterfaceAccountHolderService {
 	
 	@Autowired
