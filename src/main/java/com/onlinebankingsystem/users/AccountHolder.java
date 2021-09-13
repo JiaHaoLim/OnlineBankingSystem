@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.onlinebankingsystem.account.Account;
 
 @Entity(name = "account_holder")
@@ -28,6 +29,7 @@ public class AccountHolder extends User {
 	
 	@OneToMany(targetEntity = Account.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "account_holder_id")
+	@JsonManagedReference
 	private List<Account> accounts;
 	
 	public AccountHolder() {
