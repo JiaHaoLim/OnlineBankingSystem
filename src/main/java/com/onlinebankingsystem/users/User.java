@@ -17,65 +17,53 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 @EnableAutoConfiguration
 @Entity(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class User {
+public abstract class User extends Login {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false, unique = true)
-	private int id;
+	protected int id;
 	
 	public static final String NAME_COLUMN = "name";
 	@Column(name = NAME_COLUMN, nullable = false)
-	private String name;
-	
-	public static final String LOGIN_USERNAME_COLUMN = "login_username";
-	@Column(name = LOGIN_USERNAME_COLUMN, nullable = false, unique = true)
-	private String loginUsername;
-	
-	public static final String LOGIN_PASSWORD_COLUMN = "login_password";
-	@Column(name = LOGIN_PASSWORD_COLUMN, nullable = false)
-	private String loginPassword;
+	protected String name;
 	
 	public static final String SECRET_QUESTION_COLUMN = "secret_question";
 	@Column(name = SECRET_QUESTION_COLUMN, nullable = false)
-	private String secretQuestion;
+	protected String secretQuestion;
 	
 	public static final String SECRET_ANSWER_COLUMN = "secret_answer";
 	@Column(name = SECRET_ANSWER_COLUMN, nullable = false)
-	private String secretAnswer;
+	protected String secretAnswer;
 	
 	public static final String NUM_FAILED_LOGINS_COLUMN = "num_failed_logins";
 	@Column(name = NUM_FAILED_LOGINS_COLUMN)
-	private int numFailedLogins = 0;
+	protected int numFailedLogins = 0;
 	
 	public static final String LOCK_STATUS_COLUMN = "lock_status";
 	@Column(name = LOCK_STATUS_COLUMN)
-	private boolean isLocked = false;
+	protected boolean isLocked = false;
 	
 	public static final String DATE_COLUMN = "date_created";
 	@Column(name = DATE_COLUMN, nullable = false)
 	@Temporal(value = TemporalType.TIMESTAMP)
-	private Date dateCreated;
+	protected Date dateCreated;
 	
 	public User() {
 		dateCreated = new Date();
 	}
 	
-	public User(String name, String loginUsername, String loginPassword, String secretQuestion, String secretAnswer) {
+	public User(String name, String username, String password, String secretQuestion, String secretAnswer) {
 		this();
 		this.name = name;
-		this.loginUsername = loginUsername;
-		this.loginPassword = loginPassword;
+		this.username = username;
+		this.password = password;
 		this.secretQuestion = secretQuestion;
 		this.secretAnswer = secretAnswer;
 	}
 
-	public User(String name, String loginUsername, String loginPassword, String secretQuestion, String secretAnswer,
+	public User(String name, String username, String password, String secretQuestion, String secretAnswer,
 			int numFailedLogins, boolean isLocked, Date dateCreated) {
-		this.name = name;
-		this.loginUsername = loginUsername;
-		this.loginPassword = loginPassword;
-		this.secretQuestion = secretQuestion;
-		this.secretAnswer = secretAnswer;
+		this(name, username, password, secretQuestion, secretAnswer);
 		this.numFailedLogins = numFailedLogins;
 		this.isLocked = isLocked;
 		this.dateCreated = dateCreated;
@@ -95,22 +83,6 @@ public abstract class User {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getLoginUsername() {
-		return loginUsername;
-	}
-
-	public void setLoginUsername(String loginUsername) {
-		this.loginUsername = loginUsername;
-	}
-
-	public String getLoginPassword() {
-		return loginPassword;
-	}
-
-	public void setLoginPassword(String loginPassword) {
-		this.loginPassword = loginPassword;
 	}
 
 	public String getSecretQuestion() {
