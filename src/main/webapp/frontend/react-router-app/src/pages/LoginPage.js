@@ -10,7 +10,7 @@ export default function LoginPage() {
         <div>
             <h3 className='loginHeader'>Banking System Login</h3>
             {/* <Login/> */}
-            <LoginForm setToken={setToken}/>
+            <LoginForm/>
             <Footer/>
         </div>
     )
