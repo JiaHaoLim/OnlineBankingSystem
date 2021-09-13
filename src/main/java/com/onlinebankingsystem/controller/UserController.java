@@ -2,32 +2,17 @@ package com.onlinebankingsystem.controller;
 
 import java.util.Map;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
-
 import com.onlinebankingsystem.exception.IncorrectLoginPasswordException;
 import com.onlinebankingsystem.exception.IncorrectLoginUsernameException;
 import com.onlinebankingsystem.exception.IncorrectSecretAnswerException;
 import com.onlinebankingsystem.exception.LockedUserException;
 import com.onlinebankingsystem.service.InterfaceUserService;
-import com.onlinebankingsystem.users.AccountHolder;
-import com.onlinebankingsystem.users.BankAdmin;
 import com.onlinebankingsystem.users.Login;
-import com.onlinebankingsystem.users.LoginValidator;
 import com.onlinebankingsystem.users.User;
 
 @RestController
