@@ -1,5 +1,6 @@
 import React from 'react';
 import UnlockAccount from '../components/UnlockAccount';
+import Footer from '../components/Footer';
 import '../App.css';
 
 function UnlockPage() {
@@ -8,6 +9,7 @@ function UnlockPage() {
             <h3 className='unlockHeader'>Unlock Account</h3>
             <br/>
             <UnlockAccount/>
+            <Footer/>
         </div>
     )
 }
