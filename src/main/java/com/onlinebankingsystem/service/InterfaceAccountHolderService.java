@@ -1,13 +1,9 @@
 package com.onlinebankingsystem.service;
 
-import com.onlinebankingsystem.account.Account;
-import com.onlinebankingsystem.account.BankStatement;
-import com.onlinebankingsystem.users.AccountHolder;
-
 public interface InterfaceAccountHolderService {
 
-	BankStatement getMiniStatement(int id);
+	boolean modifyMobile(int accountId, String mobileNumber);
 
-	BankStatement getDetailedStatement(int id);
+	boolean modifyAddress(int accountId, String address);
 	
 }

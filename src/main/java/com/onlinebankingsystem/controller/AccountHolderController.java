@@ -1,31 +1,29 @@
 package com.onlinebankingsystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.onlinebankingsystem.account.Account;
-import com.onlinebankingsystem.account.BankStatement;
 import com.onlinebankingsystem.service.InterfaceAccountHolderService;
 
 @RestController
 public class AccountHolderController {
-	public static final String ACCOUNT_ID = "account_id";
-	public static final String URL_MINI_STATEMENT = "/accountholder/{" + ACCOUNT_ID + "}/ministatement";
-	public static final String URL_DETAILED_STATEMENT = "/accountholder/{" + ACCOUNT_ID + "}/detailedstatement";
+	public static final String ACCOUNT_HOLDER_ID = "account_holder_id";
+	public static final String URL_MODIFY_MOBILE = "/accountholder/{" + ACCOUNT_HOLDER_ID + "}/modify/mobile";
+	public static final String URL_MODIFY_ADDRESS = "/accountholder/{" + ACCOUNT_HOLDER_ID + "}/modify/address";
 
 	@Autowired
 	InterfaceAccountHolderService service;
-
-	@GetMapping(URL_MINI_STATEMENT)
-	public BankStatement getMiniStatement(@PathVariable(ACCOUNT_ID) int accountId) {
-		return service.getMiniStatement(accountId);
+	
+	@PostMapping(URL_MODIFY_MOBILE)
+	public boolean modifyMobile(@PathVariable(ACCOUNT_HOLDER_ID) int accountHolderId, @RequestBody String mobileNumber) {
+		return service.modifyMobile(accountHolderId, mobileNumber);
 	}
 
-	@GetMapping(URL_DETAILED_STATEMENT)
-	public BankStatement getDetailedStatement(@PathVariable(ACCOUNT_ID) int accountId) {
-		return service.getDetailedStatement(accountId);
+	@PostMapping(URL_MODIFY_ADDRESS)
+	public boolean modifyAddress(@PathVariable(ACCOUNT_HOLDER_ID) int accountHolderId, @RequestBody String address) {
+		return service.modifyAddress(accountHolderId, address);
 	}
 }
