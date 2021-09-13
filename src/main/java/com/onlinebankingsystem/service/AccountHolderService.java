@@ -20,20 +20,16 @@ public class AccountHolderService implements InterfaceAccountHolderService {
 	private TransactionJpaRepository tDao;
 
 	@Override
-	public BankStatement getMiniStatement(Account account) {
-		AccountHolder accountHolder = getAccountHolder(account);
+	public BankStatement getMiniStatement(int id) {
+		AccountHolder accountHolder = ahDao.getById(id);
 		return new BankStatement(accountHolder.getName(), accountHolder.getAddress(), 
-								tDao.findFirst10ByAccountIdOrderByDateCreated(account.getId()));
+								tDao.findFirst10ByAccountIdOrderByDateCreated(id));
 	}
 
 	@Override
-	public BankStatement getDetailedStatement(Account account) {
-		AccountHolder accountHolder = getAccountHolder(account);
+	public BankStatement getDetailedStatement(int id) {
+		AccountHolder accountHolder = ahDao.getById(id);
 		return new BankStatement(accountHolder.getName(), accountHolder.getAddress(), 
-								tDao.findByAccountIdOrderByDateCreated(account.getId()));
-	}
-
-	private AccountHolder getAccountHolder(Account account) {
-		return ahDao.getById(account.getAccountHolder().getId());
+								tDao.findByAccountIdOrderByDateCreated(id));
 	}
 }
