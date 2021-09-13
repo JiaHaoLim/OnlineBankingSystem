@@ -3,10 +3,9 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+node_modules/
 
 # dependencies
-src/main/webapp/frontend/node_modules
-src/main/webapp/frontend/react-router-app/node_modules
 /.pnp
 .pnp.js
 
@@ -37,3 +36,5 @@ build/
 
 ### VS Code ###
 .vscode/
+
+node_modules/*
