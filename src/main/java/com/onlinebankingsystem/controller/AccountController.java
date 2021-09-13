@@ -1,7 +1,5 @@
 package com.onlinebankingsystem.controller;
 
-
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,37 +21,27 @@ import com.onlinebankingsystem.service.InterfaceAccountService;
 
 @Controller
 public class AccountController {
-	
+
 //	public static final String CREATATION_OF_ACCOUNT = "create";
 //	public static final String URL_CREATE_ACC = "/" + CREATATION_OF_ACCOUNT;
-	
+
 	@Autowired
-	private InterfaceAccountService accService; 
-	
-	
-	
-	@GetMapping(path ="/create")
-	public String CreatingAccForm(Account a)
-	{
+	private InterfaceAccountService accountService;
+
+	@GetMapping(path = "/create")
+	public String CreatingAccForm(Account a) {
 		return "newaccount";
-		
+
 	}
-	
-	
-	
-	@PostMapping(path ="/create")
-   // @Transactional(propagation = Propagation.REQUIRED)
-	public String CreateNewAcc(Account a){
+
+	@PostMapping(path = "/create")
+	// @Transactional(propagation = Propagation.REQUIRED)
+	public String CreateNewAcc(Account a) {
 		System.out.println("Inside CreateNewAcc()");
 		System.out.println(a);
-		
-		
-		
-		accService.saveAccount(a);
+
+		accountService.saveAccount(a);
 		return "Success";
-		
+
 	}
-	
-	
-	
 }

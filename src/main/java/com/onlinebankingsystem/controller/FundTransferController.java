@@ -12,25 +12,23 @@ import com.onlinebankingsystem.service.FundTransferService;
 
 @Controller
 public class FundTransferController {
-	
+
 	@Autowired
 	private FundTransferService service;
-	
-	@GetMapping(path="/transfer")
-//	@Transactional(propagation = Propagation.REQUIRED)
-	public String TransferingFunds()
-	{
 
-		  return "fundtransfer";
-				
+	@GetMapping(path = "/transfer")
+//	@Transactional(propagation = Propagation.REQUIRED)
+	public String TransferingFunds() {
+
+		return "fundtransfer";
+
 	}
+
 	@PostMapping(path = "/transfer")
 	@Transactional(propagation = Propagation.REQUIRED)
-	public String TranferFundsResult(String a , String b , double amountXfer)
-	{
-	    service.transfer(a,b, amountXfer);
+	public String TranferFundsResult(String a, String b, double amountXfer) {
+		service.transfer(a, b, amountXfer);
 		return "Success";
 	}
-	
-	
+
 }
