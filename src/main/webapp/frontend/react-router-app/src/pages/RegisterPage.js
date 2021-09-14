@@ -1,6 +1,6 @@
 import React from 'react';
-import RegisterForm from '../components/RegisterForm';
-import Footer from '../components/Footer';
+import RegisterForm from '../components/App/RegisterForm';
+import Footer from '../components/App/Footer';
 import '../App.css';
 
 function RegisterPage() {

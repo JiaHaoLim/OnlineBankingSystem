@@ -1,16 +1,12 @@
 import React from 'react';
 import { Switch, Route, NavLink, HashRouter } from 'react-router-dom';
-import ViewStatements from '../components/ViewStatements';
-import ChangeProfile from '../components/ChangeProfile';
-import RequestforChequeBook from '../components/RequestforChequeBook';
-import TrackServiceRequest from '../components/TrackServiceRequest';
-import FundTransfer from '../components/FundTransfer';
-import ChangePassword from '../components/ChangePassword';
-import Footer from '../components/Footer';
+import createAccount from '../components/Admin/createAccount';
+import viewAllTransaction from '../components/Admin/viewAllTransaction';
+import Footer from '../components/App/Footer';
 import '../App.css';
 
 function HomePageAdmin() {
-    // console.log(usertype === 1? "Account Holder" : "Admin")
+    //console.log(user.data.role);
     
 
     return (
@@ -28,8 +24,8 @@ function HomePageAdmin() {
                 </nav>
                 <div className="content">
                     <Switch>
-                        <Route path="/createAccount" component={ViewStatements}/>
-                        <Route path="/viewAllTrasaction" component={ChangeProfile}/>
+                        <Route path="/createAccount" component={createAccount}/>
+                        <Route path="/viewAllTrasaction" component={viewAllTransaction}/>
                     </Switch>
                 </div>
                 <Footer/>

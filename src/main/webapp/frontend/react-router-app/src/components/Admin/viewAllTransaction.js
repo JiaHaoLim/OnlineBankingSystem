@@ -3,7 +3,7 @@ import React from 'react'
 function viewAllTransaction() {
     return (
         <div>
-            viewAllTransaction
+            This is viewAllTransaction
         </div>
     )
 }

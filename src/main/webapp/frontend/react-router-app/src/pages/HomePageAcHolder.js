@@ -1,16 +1,16 @@
 import React from 'react';
 import { Switch, Route, NavLink, HashRouter } from 'react-router-dom';
-import ViewStatements from '../components/ViewStatements';
-import ChangeProfile from '../components/ChangeProfile';
-import RequestforChequeBook from '../components/RequestforChequeBook';
-import TrackServiceRequest from '../components/TrackServiceRequest';
-import FundTransfer from '../components/FundTransfer';
-import ChangePassword from '../components/ChangePassword';
-import Footer from '../components/Footer';
+import ViewStatements from '../components/AccountHolder/ViewStatements';
+import ChangeProfile from '../components/AccountHolder/ChangeProfile';
+import RequestforChequeBook from '../components/AccountHolder/RequestforChequeBook';
+import TrackServiceRequest from '../components/AccountHolder/TrackServiceRequest';
+import FundTransfer from '../components/AccountHolder/FundTransfer';
+import ChangePassword from '../components/AccountHolder/ChangePassword';
+import Footer from '../components/App/Footer';
 import '../App.css';
 
 function HomePageAcHolder() {
-    // console.log(usertype === 1? "Account Holder" : "Admin")
+    //console.log(user.data.role);
 
     return (
         <HashRouter>
