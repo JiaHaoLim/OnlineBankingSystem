@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 
-import com.onlinebankingsystem.users.User.Role;
-
 @Entity(name = "bank_admin")
 public class BankAdmin extends User {
 

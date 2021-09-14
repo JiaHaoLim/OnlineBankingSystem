@@ -8,17 +8,22 @@ import org.springframework.stereotype.Service;
 
 import com.onlinebankingsystem.account.Account;
 import com.onlinebankingsystem.dao.FundTransferJpaRespository;
+import com.onlinebankingsystem.dao.interfaces.InterfaceFundTransferDao;
+import com.onlinebankingsystem.exception.FundTransactionFailed;
+import com.onlinebankingsystem.service.interfaces.InterfaceFundTransferService;
+
 
 @Service
 public class FundTransferService implements InterfaceFundTransferService {
 
 	@Autowired
 	@Qualifier(value = "FundTransferJpaRespository")
-	private FundTransferJpaRespository dao;
+	private InterfaceFundTransferDao dao;
 
 
 	@Override
-	public boolean transfer(String a, String b, double amountXfer) {
+	public boolean transfer(String a, String b, double amountXfer) 
+	{
 		
 //		if(a.getAcc_balance() < amountXfer)
 //		{
@@ -41,14 +46,21 @@ public class FundTransferService implements InterfaceFundTransferService {
 				 dao.save(accountA);
 				 dao.save(accountB);
 			 }
+			 return true;
 		}
+		 else {
+			 return false;
+		 }
+//		 else {
+//			throw new FundTransactionFailed()
+		
 		 
 //		 a.withdaw(amountXfer);
 //		 b.deposit(amountXfer);
 //		 dao.save(a);
 //		 dao.save(b);
 	
-		 return true;
+		 
 		
 	}
 

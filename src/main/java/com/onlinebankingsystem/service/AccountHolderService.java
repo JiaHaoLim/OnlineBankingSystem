@@ -1,41 +1,53 @@
 package com.onlinebankingsystem.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.onlinebankingsystem.account.Account;
-import com.onlinebankingsystem.account.BankStatement;
+import com.onlinebankingsystem.config.AppConfig;
 import com.onlinebankingsystem.dao.AccountHolderJpaRepository;
-import com.onlinebankingsystem.dao.AccountJpaRepository;
-import com.onlinebankingsystem.dao.TransactionJpaRepository;
+import com.onlinebankingsystem.dao.interfaces.InterfaceAccountHolderDao;
+import com.onlinebankingsystem.service.interfaces.InterfaceAccountHolderService;
 import com.onlinebankingsystem.users.AccountHolder;
 
 @Service
 public class AccountHolderService implements InterfaceAccountHolderService {
-	@Autowired
-	@Qualifier(value = "AccountJpaRepository")
-	private AccountJpaRepository accountDao;
 	
 	@Autowired
-	@Qualifier(value = "AccountHolderJpaRepository")
-	private AccountHolderJpaRepository accountHolderDao;
-	
-	@Autowired
-	@Qualifier(value = "TransactionJpaRepository")
-	private TransactionJpaRepository transactionDao;
+	@Qualifier(value = AppConfig.ACCOUNT_HOLDER_DAO)
+	private InterfaceAccountHolderDao accountHolderDao;
 
 	@Override
-	public BankStatement getMiniStatement(int accountId) {
-		AccountHolder accountHolder = accountDao.getById(accountId).getAccountHolder();
-		return new BankStatement(accountHolder.getName(), accountHolder.getAddress(), 
-								transactionDao.findFirst10ByAccountIdOrderByDateCreated(accountId));
+	public boolean modifyMobile(int accountHolderId, String mobileNumber) {
+		AccountHolder accountHolder = accountHolderDao.getById(accountHolderId);
+		accountHolder.setMobileNumber(mobileNumber);
+		accountHolderDao.save(accountHolder);
+		
+		int tempId = accountHolder.getId();
+		Optional<AccountHolder> tempOptAccountHolder = accountHolderDao.findById(tempId);
+		
+		if (tempOptAccountHolder.isPresent() && tempOptAccountHolder.get().getMobileNumber().equals(mobileNumber)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
-	public BankStatement getDetailedStatement(int accountId) {
-		AccountHolder accountHolder = accountDao.getById(accountId).getAccountHolder();
-		return new BankStatement(accountHolder.getName(), accountHolder.getAddress(), 
-								transactionDao.findByAccountIdOrderByDateCreated(accountId));
+	public boolean modifyAddress(int accountHolderId, String address) {
+		AccountHolder accountHolder = accountHolderDao.getById(accountHolderId);
+		accountHolder.setAddress(address);
+		accountHolderDao.save(accountHolder);
+		
+		int tempId = accountHolder.getId();
+		Optional<AccountHolder> tempOptAccountHolder = accountHolderDao.findById(tempId);
+		
+		if (tempOptAccountHolder.isPresent() && tempOptAccountHolder.get().getAddress().equals(address)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
