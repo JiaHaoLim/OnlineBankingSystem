@@ -19,19 +19,34 @@ public class FundTransferController {
 	@Autowired
 	private FundTransferService service;
 
+//	@GetMapping(URL_FUND_TRANSFER)
+////	@Transactional(propagation = Propagation.REQUIRED)
+//	public String TransferingFunds() {
+//
+//		return "fundtransfer";
+//
+//	}
+	
 	@GetMapping(URL_FUND_TRANSFER)
 //	@Transactional(propagation = Propagation.REQUIRED)
-	public String TransferingFunds() {
+	public boolean TransferingFunds() {
 
-		return "fundtransfer";
+		return true;
 
 	}
 
+//	@PostMapping(URL_FUND_TRANSFER)
+//	@Transactional(propagation = Propagation.REQUIRED)
+//	public String TranferFundsResult(String a, String b, double amountXfer) {
+//		service.transfer(a, b, amountXfer);
+//		return "Success";
+//	}
+	
 	@PostMapping(URL_FUND_TRANSFER)
 	@Transactional(propagation = Propagation.REQUIRED)
-	public String TranferFundsResult(String a, String b, double amountXfer) {
+	public boolean TranferFundsResult(String a, String b, double amountXfer) {
 		service.transfer(a, b, amountXfer);
-		return "Success";
+		return true;
 	}
 
 }

@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.onlinebankingsystem.account.Account;
 import com.onlinebankingsystem.account.BankStatement;
-import com.onlinebankingsystem.service.InterfaceAccountService;
+import com.onlinebankingsystem.service.interfaces.InterfaceAccountService;
+
 
 //@Controller
 @RestController
@@ -24,20 +25,35 @@ public class AccountController {
 	@Autowired
 	private InterfaceAccountService accountService;
 
+//	@GetMapping(path = "/create")
+//	public String CreatingAccForm(Account a) {
+//		return "newaccount";
+//
+//	}
 	@GetMapping(path = "/create")
-	public String CreatingAccForm(Account a) {
-		return "newaccount";
+	public Account CreatingAccForm(Account a) {
+		return a;
 
 	}
 
+//	@PostMapping(path = "/create")
+//	// @Transactional(propagation = Propagation.REQUIRED)
+//	public String CreateNewAcc(Account a) {
+//		
+//		System.out.println(a);
+//
+//		accountService.saveAccount(a);
+//		return "Success";
+//
+//	}
 	@PostMapping(path = "/create")
 	// @Transactional(propagation = Propagation.REQUIRED)
-	public String CreateNewAcc(Account a) {
-		System.out.println("Inside CreateNewAcc()");
+	public boolean CreateNewAcc(Account a) {
+		
 		System.out.println(a);
 
 		accountService.saveAccount(a);
-		return "Success";
+		return true;
 
 	}
 	
