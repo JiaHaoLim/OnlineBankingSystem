@@ -78,7 +78,9 @@ export default class LoginForm extends Component {
             });
             console.log(user)
             if (user.data == null) {
-                console.log("loading");
+                let errors = { username: '', password: '' };
+                errors.username = 'Invalid Username or Password!';
+                this.setState({ errors });
             } else {
                 //console.log(user.data.role);
                 if (user.data.role == "BANK_ADMIN") {
