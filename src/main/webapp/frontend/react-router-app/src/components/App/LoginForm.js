@@ -81,6 +81,11 @@ export default class LoginForm extends Component {
                 let errors = { username: '', password: '' };
                 errors.username = 'Invalid Username or Password!';
                 this.setState({ errors });
+            } else if (user.data.password == null) {
+                console.log(user.data.password)
+                let errors = { username: '', password: '' };
+                errors.username = 'Account is locked from too many failed login attempts!';
+                this.setState({ errors });
             } else {
                 //console.log(user.data.role);
                 if (user.data.role == "BANK_ADMIN") {
