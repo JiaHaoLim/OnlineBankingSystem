@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.onlinebankingsystem.users.AccountHolder;
 
 @Entity(name = "account")
@@ -18,18 +19,19 @@ public class Account {
 	private int id;
 
 	@ManyToOne
+	@JsonBackReference
 	private AccountHolder accountHolder;
 
-	public static final String ACC_ACCOUNT_TYPE_COLUMN = "type";
-	@Column(name = ACC_ACCOUNT_TYPE_COLUMN)
+	public static final String TYPE_COLUMN = "type";
+	@Column(name = TYPE_COLUMN)
 	private String type;
 
-	public static final String ACC_BALANCE_COLUMN = "balance";
-	@Column(name = ACC_BALANCE_COLUMN)
+	public static final String BALANCE_COLUMN = "balance";
+	@Column(name = BALANCE_COLUMN)
 	private double balance;
 
-	public static final String ACC_ACCOUNT_NUMBER_COLUMN = "account_number";
-	@Column(name = ACC_ACCOUNT_NUMBER_COLUMN)
+	public static final String ACCOUNT_NUMBER_COLUMN = "account_number";
+	@Column(name = ACCOUNT_NUMBER_COLUMN)
 	private String accountNumber;
 
 	public Account() {

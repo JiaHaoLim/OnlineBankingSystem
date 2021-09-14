@@ -1,47 +1,75 @@
 package com.onlinebankingsystem.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mapping.AccessOptions.SetOptions.Propagation;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.onlinebankingsystem.account.Account;
+import com.onlinebankingsystem.account.BankStatement;
+import com.onlinebankingsystem.service.interfaces.InterfaceAccountService;
 
-import com.onlinebankingsystem.service.InterfaceAccountService;
 
-@Controller
+//@Controller
+@RestController
 public class AccountController {
 
 //	public static final String CREATATION_OF_ACCOUNT = "create";
 //	public static final String URL_CREATE_ACC = "/" + CREATATION_OF_ACCOUNT;
+	public static final String ACCOUNT_ID = "account_id";
+	public static final String URL_MINI_STATEMENT = "/account/{" + ACCOUNT_ID + "}/ministatement";
+	public static final String URL_DETAILED_STATEMENT = "/account/{" + ACCOUNT_ID + "}/detailedstatement";
+	public static final String URL_CHEQUE_BOOK = "/account/{" + ACCOUNT_ID + "}/requestchequebook";
 
 	@Autowired
 	private InterfaceAccountService accountService;
 
+//	@GetMapping(path = "/create")
+//	public String CreatingAccForm(Account a) {
+//		return "newaccount";
+//
+//	}
 	@GetMapping(path = "/create")
-	public String CreatingAccForm(Account a) {
-		return "newaccount";
+	public Account CreatingAccForm(Account a) {
+		return a;
 
 	}
 
+//	@PostMapping(path = "/create")
+//	// @Transactional(propagation = Propagation.REQUIRED)
+//	public String CreateNewAcc(Account a) {
+//		
+//		System.out.println(a);
+//
+//		accountService.saveAccount(a);
+//		return "Success";
+//
+//	}
 	@PostMapping(path = "/create")
 	// @Transactional(propagation = Propagation.REQUIRED)
-	public String CreateNewAcc(Account a) {
-		System.out.println("Inside CreateNewAcc()");
+	public boolean CreateNewAcc(Account a) {
+		
 		System.out.println(a);
 
 		accountService.saveAccount(a);
-		return "Success";
+		return true;
 
+	}
+	
+	@GetMapping(URL_MINI_STATEMENT)
+	public BankStatement getMiniStatement(@PathVariable(ACCOUNT_ID) int accountId) {
+		return accountService.getMiniStatement(accountId);
+	}
+
+	@GetMapping(URL_DETAILED_STATEMENT)
+	public BankStatement getDetailedStatement(@PathVariable(ACCOUNT_ID) int accountId) {
+		return accountService.getDetailedStatement(accountId);
+	}
+	
+	@PostMapping(URL_CHEQUE_BOOK)
+	public void requestChequeBook(@PathVariable(ACCOUNT_ID) int accountId) {
+		accountService.requestChequeBook(accountId);
 	}
 }
