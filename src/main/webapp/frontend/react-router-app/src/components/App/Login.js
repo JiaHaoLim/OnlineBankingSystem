@@ -6,10 +6,12 @@ import Footer from './Footer';
 import '../../App.css';
 import HomePageAcHolder from '../../pages/HomePageAcHolder';
 import HomePageAdmin from '../../pages/HomePageAdmin';
+import RegisterPage from '../../pages/RegisterPage';
 
 async function loginUser(credentials) {
   // console.log(credentials);
   // POST request using fetch with error handling
+
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -67,13 +69,20 @@ export default function Login({ setToken }) {
   }
 
   const handleUnlock = (event) => {
-    this.setState({redirect:"/unlockaccount"});
+    return <Redirect to={{
+      pathname: '/unlockaccount',
+      state: { id: '0' }}}/>
+    this.setRedirect({redirect:"/unlockaccount"});
     event.preventDefault()
   }
 
   const handleNewUser = (event) => {
-      this.setState({redirect:"/registerpage"});
-      event.preventDefault();
+    return <Redirect to={{
+      pathname: '/registerpage',
+      state: { id: '0' }}}/>
+    return <Route path="/registerpage" component={RegisterPage}/>
+    this.setState({redirect:"/registerpage"});
+    event.preventDefault();
   }
 
   // handleSecretQuestionChange = (event) => {
