@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.onlinebankingsystem.account.Account;
 import com.onlinebankingsystem.account.BankStatement;
-import com.onlinebankingsystem.service.InterfaceAccountService;
+import com.onlinebankingsystem.service.interfaces.InterfaceAccountService;
 
 //@Controller
 @RestController
@@ -20,6 +20,7 @@ public class AccountController {
 	public static final String ACCOUNT_ID = "account_id";
 	public static final String URL_MINI_STATEMENT = "/account/{" + ACCOUNT_ID + "}/ministatement";
 	public static final String URL_DETAILED_STATEMENT = "/account/{" + ACCOUNT_ID + "}/detailedstatement";
+	public static final String URL_CHEQUE_BOOK = "/account/{" + ACCOUNT_ID + "}/requestchequebook";
 
 	@Autowired
 	private InterfaceAccountService accountService;
@@ -49,5 +50,10 @@ public class AccountController {
 	@GetMapping(URL_DETAILED_STATEMENT)
 	public BankStatement getDetailedStatement(@PathVariable(ACCOUNT_ID) int accountId) {
 		return accountService.getDetailedStatement(accountId);
+	}
+	
+	@PostMapping(URL_CHEQUE_BOOK)
+	public void requestChequeBook(@PathVariable(ACCOUNT_ID) int accountId) {
+		accountService.requestChequeBook(accountId);
 	}
 }
