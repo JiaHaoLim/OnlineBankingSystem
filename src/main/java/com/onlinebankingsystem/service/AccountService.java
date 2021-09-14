@@ -8,6 +8,7 @@ import com.onlinebankingsystem.account.Account;
 import com.onlinebankingsystem.account.BankStatement;
 import com.onlinebankingsystem.dao.AccountJpaRepository;
 import com.onlinebankingsystem.dao.TransactionJpaRepository;
+import com.onlinebankingsystem.service.interfaces.InterfaceAccountService;
 import com.onlinebankingsystem.users.AccountHolder;
 
 
@@ -44,5 +45,9 @@ public class AccountService implements InterfaceAccountService {
 		AccountHolder accountHolder = accountDao.getById(accountId).getAccountHolder();
 		return new BankStatement(accountHolder.getName(), accountHolder.getAddress(), 
 								transactionDao.findByAccountIdOrderByDateCreated(accountId));
+	}
+
+	@Override
+	public void requestChequeBook(int accountId) {
 	}
 }
