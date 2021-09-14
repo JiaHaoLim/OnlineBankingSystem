@@ -5,8 +5,8 @@ import viewAllTransaction from '../components/Admin/viewAllTransaction';
 import Footer from '../components/App/Footer';
 import '../App.css';
 
-function HomePageAdmin({user}) {
-    console.log(user.data.role);
+function HomePageAdmin() {
+    //console.log(user.data.role);
     
 
     return (

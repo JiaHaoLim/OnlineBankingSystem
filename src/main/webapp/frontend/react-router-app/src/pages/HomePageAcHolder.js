@@ -9,8 +9,8 @@ import ChangePassword from '../components/AccountHolder/ChangePassword';
 import Footer from '../components/App/Footer';
 import '../App.css';
 
-function HomePageAcHolder({user}) {
-    console.log(user.data.role);
+function HomePageAcHolder() {
+    //console.log(user.data.role);
 
     return (
         <HashRouter>

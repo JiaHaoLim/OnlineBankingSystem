@@ -1,3 +1,4 @@
+/*
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -108,4 +109,4 @@ export default function LoginForm({setToken}) {
 
 LoginForm.propTypes = {
     setToken: PropTypes.func.isRequired
-}
+}*/

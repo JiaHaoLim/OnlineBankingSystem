@@ -69,20 +69,21 @@ export default function Login({ setToken }) {
   }
 
   const handleUnlock = (event) => {
+    event.preventDefault();
     return <Redirect to={{
       pathname: '/unlockaccount',
       state: { id: '0' }}}/>
-    this.setRedirect({redirect:"/unlockaccount"});
-    event.preventDefault()
+    //this.setRedirect({redirect:"/unlockaccount"});
+    //event.preventDefault()
   }
 
   const handleNewUser = (event) => {
     return <Redirect to={{
       pathname: '/registerpage',
       state: { id: '0' }}}/>
-    return <Route path="/registerpage" component={RegisterPage}/>
-    this.setState({redirect:"/registerpage"});
-    event.preventDefault();
+    //return <Route path="/registerpage" component={RegisterPage}/>
+    //this.setState({redirect:"/registerpage"});
+    //event.preventDefault();
   }
 
   // handleSecretQuestionChange = (event) => {
